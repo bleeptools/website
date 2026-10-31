@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pritoki · design options</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --navy: #212431;
+      --slate: #2A2F3F;
+      --accent: #FC5C02;
+      --muted: #878787;
+      --ivory: #F2EDE0;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: #15171f;
+      color: var(--ivory);
+      font: 14px/1.4 system-ui, -apple-system, sans-serif;
+    }
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 24px;
+      padding: 10px 16px;
+      background: var(--slate);
+    }
+    .bar h1 { margin: 0; font-size: 15px; }
+    .seg { display: inline-flex; border: 1px solid var(--muted); border-radius: 6px; overflow: hidden; }
+    .seg button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--ivory);
+      font: inherit;
+      cursor: pointer;
+    }
+    .seg button[aria-pressed="true"] { background: var(--accent); color: var(--navy); font-weight: 700; }
+    label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    .hint { color: var(--muted); margin-left: auto; }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+      gap: 12px;
+      min-height: 0;
+      padding: 12px;
+    }
+    .col { display: grid; grid-template-rows: auto 1fr; gap: 6px; min-height: 0; }
+    .col[hidden] { display: none; }
+    .col header { display: flex; justify-content: space-between; align-items: baseline; }
+    .col header strong { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+    .col header a { color: var(--muted); font-size: 12px; }
+    .viewport {
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+      border-radius: 6px;
+      background: #000;
+    }
+    .viewport iframe {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border: 0;
+      transform-origin: top center;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <h1>pritoki · design options</h1>
+    <div class="seg" role="group" aria-label="Device width">
+      <button type="button" data-w="390" aria-pressed="false">Phone 390</button>
+      <button type="button" data-w="768" aria-pressed="false">Tablet 768</button>
+      <button type="button" data-w="1280" aria-pressed="true">Desktop 1280</button>
+    </div>
+    <div class="seg" role="group" aria-label="Options shown">
+      <button type="button" data-show="current" aria-pressed="true">Current</button>
+      <button type="button" data-show="swiss" aria-pressed="true">Swiss</button>
+      <button type="button" data-show="bauhaus" aria-pressed="true">Bauhaus</button>
+    </div>
+    <label><input type="checkbox" id="sync" checked> Sync scroll</label>
+    <span class="hint">Scroll inside any frame. Sync needs a local server (e.g. python3 -m http.server).</span>
+  </div>
+
+  <div class="cols">
+    <section class="col" data-id="current">
+      <header><strong>Current</strong><a href="index.html" target="_blank">open ↗</a></header>
+      <div class="viewport"><iframe src="index.html" title="Current design"></iframe></div>
+    </section>
+    <section class="col" data-id="swiss">
+      <header><strong>Swiss Style</strong><a href="swiss.html" target="_blank">open ↗</a></header>
+      <div class="viewport"><iframe src="swiss.html" title="Swiss Style design"></iframe></div>
+    </section>
+    <section class="col" data-id="bauhaus">
+      <header><strong>Bauhaus</strong><a href="bauhaus.html" target="_blank">open ↗</a></header>
+      <div class="viewport"><iframe src="bauhaus.html" title="Bauhaus design"></iframe></div>
+    </section>
+  </div>
+
+  <script>
+    const cols = [...document.querySelectorAll('.col')];
+    const frames = cols.map((c) => c.querySelector('iframe'));
+    const sync = document.getElementById('sync');
+    let deviceWidth = 1280;
+
+    // Render each page at the device width, scaled down to fit its column.
+    function layout() {
+      const visible = cols.filter((c) => !c.hidden);
+      document.querySelector('.cols').style.setProperty('--n', visible.length);
+      visible.forEach((col) => {
+        const vp = col.querySelector('.viewport');
+        const frame = col.querySelector('iframe');
+        const scale = Math.min(1, vp.clientWidth / deviceWidth);
+        frame.style.width = deviceWidth + 'px';
+        frame.style.height = vp.clientHeight / scale + 'px';
+        frame.style.transform = `translateX(-50%) scale(${scale})`;
+      });
+    }
+
+    document.querySelectorAll('[data-w]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        deviceWidth = Number(btn.dataset.w);
+        document.querySelectorAll('[data-w]').forEach((b) => b.setAttribute('aria-pressed', b === btn));
+        layout();
+      });
+    });
+
+    document.querySelectorAll('[data-show]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const on = btn.getAttribute('aria-pressed') !== 'true';
+        if (!on && cols.filter((c) => !c.hidden).length === 1) return;
+        btn.setAttribute('aria-pressed', on);
+        cols.find((c) => c.dataset.id === btn.dataset.show).hidden = !on;
+        layout();
+      });
+    });
+
+    // Sync scroll by relative position (pages have different lengths).
+    // Only works when served over http; file:// blocks access to frame documents.
+    // Programmatic scrolls fire their own (async) scroll event; skip that one.
+    const ignoreNext = new WeakSet();
+    frames.forEach((frame) => {
+      frame.addEventListener('load', () => {
+        let win;
+        try { win = frame.contentWindow; win.document; } catch { return; }
+        win.addEventListener('scroll', () => {
+          if (ignoreNext.has(frame)) { ignoreNext.delete(frame); return; }
+          if (!sync.checked) return;
+          const doc = win.document.documentElement;
+          const ratio = win.scrollY / Math.max(1, doc.scrollHeight - win.innerHeight);
+          frames.forEach((other) => {
+            if (other === frame || other.closest('.col').hidden) return;
+            try {
+              const ow = other.contentWindow;
+              const od = ow.document.documentElement;
+              const y = Math.round(ratio * (od.scrollHeight - ow.innerHeight));
+              if (Math.abs(ow.scrollY - y) < 1) return;
+              ignoreNext.add(other);
+              ow.scrollTo({ top: y, behavior: 'instant' }); // pages use smooth scrolling
+            } catch { /* cross-origin under file:// */ }
+          });
+        });
+      });
+    });
+
+    window.addEventListener('resize', layout);
+    layout();
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # pritoki landing page: spec
 
-Landing page for **pritoki**, a drum machine by bleeptools for iPad and Mac (standalone app and AUv3 plugin).
+Landing page for **pritoki**, a rhythmic synthesizer by bleeptools for iPad and Mac (standalone app and AUv3 plugin).
 Goals: explain the instrument, send people to the beta, and collect emails for the launch.
 
 Status: draft v1, 2026-10-30
@@ -78,7 +78,7 @@ No horizontal scrolling at 320px width.
 - Order on mobile:
   1. Wordmark **pritoki** (h1)
   2. Tagline: "One voice. Three tracks. Endless in-betweens." (large, ivory)
-  3. Platform line (muted): "Drum machine for iPad & Mac · Standalone + AUv3"
+  3. Platform line (muted): "Rhythmic synthesizer for iPad & Mac · Standalone + AUv3"
   4. CTAs: **Join the beta** (primary, orange) and **Get notified** (secondary, outlined, jumps to `#signup`)
   5. Hero image: `One voice.png` (iPad screenshot), full width
   6. Intro paragraph ("Every hit is a blend…")
@@ -157,7 +157,7 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 ## 9. Meta / SEO
 
-- `<title>`: "pritoki: drum machine for iPad & Mac (AUv3) · bleeptools"
+- `<title>`: "pritoki: rhythmic synthesizer for iPad & Mac (AUv3) · bleeptools"
 - Meta description based on the tagline and the intro.
 - Open Graph and Twitter card tags. The OG image is a 1200×630 crop of the hero, generated once and stored in `img/og.png`.
 - `lang="en"`, `theme-color` set to `#212431`, favicon (a pritoki app icon if one exists; otherwise the orange "B" circle from the logo).

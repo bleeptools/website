@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pritoki: rhythmic synthesizer for iPad &amp; Mac (AUv3) · bleeptools</title>
+  <meta name="description" content="pritoki is a rhythmic synthesizer for iPad and Mac, standalone and AUv3. One voice, three tracks, endless in-betweens: every hit is a blend of all three tracks, in sound and in rhythm.">
+  <meta name="theme-color" content="#212431">
+  <meta name="color-scheme" content="dark">
+  <!-- Design option: Swiss Style. Compare at compare.html -->
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/controls.css">
+  <link rel="stylesheet" href="css/swiss.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <!-- TODO: bleeptools site URL -->
+      <a class="topbar__logo" href="#" aria-label="bleeptools">
+        <img src="img/logo-bleeptools.png" alt="bleeptools" width="500" height="191">
+      </a>
+      <!-- TODO: beta link (TestFlight) -->
+      <a class="topbar__link" href="#">Join the beta</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <ul class="meta" aria-label="At a glance">
+        <li>Rhythmic synthesizer</li>
+        <li>iPad &amp; Mac</li>
+        <li>Standalone + AUv3</li>
+        <li>Beta 2026</li>
+      </ul>
+
+      <h1 class="hero__title" id="hero-title">pritoki</h1>
+
+      <div class="grid hero__row">
+        <p class="hero__tagline">One voice.<br>Three tracks.<br>Endless in&#8209;betweens.</p>
+        <div class="hero__side">
+          <p class="hero__intro">Every hit is a blend of all three tracks, in sound and in rhythm. Slide between them and groove and timbre move as one. Land between a kick and a bass. Let one rhythm take the shape of another. Get lost on purpose.</p>
+          <div class="hero__ctas">
+            <!-- TODO: beta link (TestFlight) -->
+            <a class="btn btn--primary" href="#">Join the beta <span aria-hidden="true">→</span></a>
+            <a class="btn btn--secondary" href="#signup">Get notified</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__image">
+        <picture>
+          <source type="image/avif"
+                  srcset="img/hero-ipad-800.avif 800w, img/hero-ipad-1400.avif 1400w, img/hero-ipad-2000.avif 2000w"
+                  sizes="(min-width: 1280px) 1200px, 100vw">
+          <img src="img/hero-ipad-1400.png"
+               srcset="img/hero-ipad-800.png 800w, img/hero-ipad-1400.png 1400w, img/hero-ipad-2000.png 2000w"
+               sizes="(min-width: 1280px) 1200px, 100vw"
+               width="2615" height="1864" fetchpriority="high"
+               alt="pritoki on iPad: three circular sequencer rings around an XY blend pad, with snapshot, sound and pitch controls">
+        </picture>
+      </div>
+    </section>
+
+    <div class="features wrap">
+
+      <section class="feature grid" aria-labelledby="f-groove">
+        <span class="feature__index" aria-hidden="true">01</span>
+        <div class="feature__text">
+          <h2 id="f-groove">Generate a groove. Then make it yours.</h2>
+          <p>Each of the three tracks has its own sequencer ring with up to 64 steps. Set steps, pulses and rotation, and a Euclidean pattern appears right away. Tap in your own hits on top, give single steps their own pitch, or roll the dice so hits drop out at random and the loop never repeats exactly. Start and stop any track with one touch.</p>
+        </div>
+        <div class="feature__visual">
+          <picture>
+            <source type="image/avif" srcset="img/generate-a-groove.avif">
+            <img class="feature__img feature__img--groove" src="img/generate-a-groove.png" width="563" height="563" loading="lazy"
+                 alt="A sequencer ring with step, pulse and rotation controls and a dice button for random hit dropouts">
+          </picture>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-blend">
+        <span class="feature__index" aria-hidden="true">02</span>
+        <div class="feature__text">
+          <h2 id="f-blend">Blend and shape.</h2>
+          <p>Move between the three tracks with a single finger. Pick from several blend modes, separately for pitch and for timbre, to change how the tracks combine. Add glide and smoothing.</p>
+        </div>
+        <div class="feature__visual">
+          <picture>
+            <source type="image/avif" srcset="img/blend-and-shape.avif">
+            <img class="feature__img" src="img/blend-and-shape.png" width="638" height="432" loading="lazy"
+                 alt="The XY blend pad with separate blend mode selectors and knobs for pitch and tone">
+          </picture>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-capture">
+        <span class="feature__index" aria-hidden="true">03</span>
+        <div class="feature__text">
+          <h2 id="f-capture">Capture a moment. Morph to the next.</h2>
+          <p>Save four snapshots of the whole instrument: sound, patterns and steps. Jump between them, or let them morph into each other over time. It's a sketchbook for trying ideas, and a set of moves you can play live.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="snap" role="img" aria-label="Morph knob next to four snapshot slots, S1 to S4">
+            <div class="snap__morph">
+              <span class="ctl-label">Morph</span>
+              <span class="knob" style="--a: 135deg"></span>
+              <span class="ctl-value">1/4</span>
+            </div>
+            <div class="snap__slots">
+              <span class="snap__slot">S1</span>
+              <span class="snap__slot">S2</span>
+              <span class="snap__slot">S3</span>
+              <span class="snap__slot">S4</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-model">
+        <span class="feature__index" aria-hidden="true">04</span>
+        <div class="feature__text">
+          <h2 id="f-model">Change the model. Change the character.</h2>
+          <p>One knob reshapes how the voice is built. Turn Model up and the voice goes from tones that bend and twist each other into one sound, to a layered voice where you also hear each of them on its own, in harmonic tune. You get a new family of tones without starting over, and because Model is part of every snapshot, it morphs too.</p>
+        </div>
+        <div class="feature__visual">
+          <div class="model" role="img" aria-label="The Model knob, turning between fused and layered voices">
+            <span class="ctl-label model__label">Model</span>
+            <span class="knob knob--lg"></span>
+            <span class="model__scale" aria-hidden="true"><span>fused</span><span>layered</span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-play">
+        <span class="feature__index" aria-hidden="true">05</span>
+        <div class="feature__text">
+          <h2 id="f-play">Play it like an instrument.</h2>
+          <p>Each track has a pitch fader that can lock to a scale, so melodic bass lines fall under your fingers. You can also play each track from its own MIDI channel with a keyboard or another sequencer.</p>
+        </div>
+        <div class="feature__visual">
+          <picture>
+            <source type="image/avif" srcset="img/play-it-like-an-instrument.avif">
+            <img class="feature__img feature__img--tall" src="img/play-it-like-an-instrument.png" width="344" height="798" loading="lazy"
+                 alt="Three pitch faders locked to a scale, with note names on each step">
+          </picture>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-grit">
+        <span class="feature__index" aria-hidden="true">06</span>
+        <div class="feature__text">
+          <h2 id="f-grit">Add grit. Let it ring.</h2>
+          <p>Use Warp to bend the tone harder, turn on Hard for a gated, broken edge, and add drive, a bitcrusher or a wavefolder. Send any track into a tempo-synced tape-style echo, and its tails ring on after the hit has ended.</p>
+        </div>
+        <div class="feature__visual">
+          <!-- TODO: asset "Add grit" -->
+          <div class="placeholder">image coming</div>
+        </div>
+      </section>
+
+      <section class="feature grid" aria-labelledby="f-setup">
+        <span class="feature__index" aria-hidden="true">07</span>
+        <div class="feature__text">
+          <h2 id="f-setup">Play it on its own. Plug it into your setup.</h2>
+          <p>Open pritoki as a standalone app on iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.</p>
+        </div>
+        <div class="feature__visual">
+          <!-- TODO: asset "Play it on its own" -->
+          <div class="placeholder">image coming</div>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="signup wrap grid" id="signup" aria-labelledby="signup-title">
+      <span class="feature__index" aria-hidden="true">→</span>
+      <div class="signup__head">
+        <h2 id="signup-title">Get notified at launch</h2>
+        <p class="signup__sub">One email when pritoki is out. No spam.</p>
+      </div>
+      <div class="signup__body">
+        <!-- TODO: form endpoint / newsletter provider -->
+        <form class="signup__form" action="" method="post">
+          <label class="signup__label" for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          <button class="btn btn--primary" type="submit">Notify me</button>
+        </form>
+        <p class="signup__status" role="status" aria-live="polite"></p>
+        <!-- TODO: privacy policy URL -->
+        <p class="signup__consent">By subscribing you agree to our <a href="#">privacy policy</a>.</p>
+        <p class="signup__beta">Want to try it now? <a href="#">Join the beta →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap grid footer__inner">
+      <p class="footer__brand">bleeptools</p>
+      <!-- TODO: social channel URLs -->
+      <ul class="footer__col" aria-label="Social">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+      <!-- TODO: Impressum and privacy policy URLs -->
+      <ul class="footer__col" aria-label="Legal">
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Privacy policy</a></li>
+      </ul>
+      <p class="footer__fine">© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
