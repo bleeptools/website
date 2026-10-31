@@ -228,7 +228,7 @@ a { color: inherit; }
 
 .feature__visual {
   grid-column: 1 / -1;
-  justify-self: start;
+  justify-self: center;
 }
 
 .feature__img { width: 100%; max-width: 320px; }
@@ -240,21 +240,6 @@ a { color: inherit; }
   height: 260px;
   object-fit: cover;
   object-position: top;
-}
-
-.placeholder {
-  display: grid;
-  place-items: center;
-  width: min(320px, 80vw);
-  aspect-ratio: 4 / 3;
-  border: var(--rule);
-  color: var(--c-muted);
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  background:
-    linear-gradient(to top right, transparent calc(50% - .5px), var(--c-muted) 50%, transparent calc(50% + .5px));
 }
 
 /* ---------- Signup ---------- */
@@ -413,7 +398,10 @@ a { color: inherit; }
   }
   .feature__index { grid-column: 1 / span 2; }
   .feature__text { grid-column: 3 / span 5; }
-  .feature__visual { grid-column: 8 / span 5; }
+  .feature__visual {
+    grid-column: 8 / span 5;
+    justify-self: start;
+  }
 
   .feature__img--tall {
     max-width: 150px;

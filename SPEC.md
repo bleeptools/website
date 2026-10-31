@@ -96,17 +96,16 @@ There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with a
 | 3 | Capture a moment. Morph to the next.            | **SVG/CSS rebuild** (see 6.1)            | Morph knob plus S1–S4. |
 | 4 | Change the model. Change the character.         | **SVG/CSS rebuild** (see 6.2)            | Large Model knob. |
 | 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, show it 180×260px, cropped from the top with `object-fit: cover; object-position: top`. |
-| 6 | Add grit. Let it ring.                          | **Placeholder**, asset to come            | See placeholders below. |
-| 7 | Play it on its own. Plug it into your setup.    | **Placeholder**, asset to come            | Same as above. |
+| 6 | Add grit. Let it ring.                          | None for now (asset to come)             | Text only. |
+| 7 | Play it on its own. Plug it into your setup.    | None for now (asset to come)             | Text only. |
 
 Layout:
 - Each block starts with a 1px muted rule across the full content width.
-- base: number, heading, text, then the visual (left-aligned, no panel).
-- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12, all top-aligned.
+- base: number, heading, text, then the visual (centered, no panel).
+- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12 (left-aligned), all top-aligned.
 - Visuals sit directly on the navy background. Image max width 320px (sequencer ring 280px).
 - Orange index number ("01" to "07") above/left of each heading.
 - Vertical rhythm: 16px from rule to content; 64px after each block on mobile, 96px on desktop.
-- Placeholders: 4:3 box with a hairline border and a diagonal line, label "IMAGE COMING".
 
 ### 5.4 Signup (`#signup`)
 - Starts with a strong ivory rule. Uses the feature grid: "→" in the number column, heading and subline in columns 3–7, form in 8–12.
@@ -180,7 +179,7 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 | Privacy policy URL           | `#`            | you   |
 | Social channels and URLs     | `#`            | you   |
 | bleeptools site URL (logo)   | `#`            | you   |
-| Asset: Add grit              | placeholder    | you   |
-| Asset: Play it on its own    | placeholder    | you   |
+| Asset: Add grit              | text only      | you   |
+| Asset: Play it on its own    | text only      | you   |
 | App icon / favicon           | logo fallback  | you   |
 | Domain (for OG absolute URLs)| unknown        | you   |
