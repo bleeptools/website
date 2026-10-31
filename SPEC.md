@@ -3,7 +3,7 @@
 Landing page for **pritoki**, a rhythmic synthesizer by bleeptools for iPad and Mac (standalone app and AUv3 plugin).
 Goals: explain the instrument, send people to the beta, and collect emails for the launch.
 
-Status: draft v1, 2026-10-30
+Status: draft v2 (Swiss Style), 2026-11-01
 
 ---
 
@@ -36,32 +36,35 @@ Status: draft v1, 2026-10-30
 - Self-host Inter (variable woff2, Latin subset) so the page makes no requests to Google Fonts (GDPR).
 - Must work as plain static files on any host.
 
-## 3. Design tokens
+## 3. Design language and tokens
+
+Style: **Swiss Style** (International Typographic Style). Strict grid, hairline rules, oversized flush-left type, square corners, generous space, orange as the only signal color.
 
 | Token              | Value     | Use                                              |
 |--------------------|-----------|--------------------------------------------------|
-| `--c-bg`           | `#212431` | Page background                                  |
-| `--c-surface`      | `#2A2F3F` | Cards, alternating section bands, form field     |
-| `--c-accent`       | `#FC5C02` | Primary buttons, focus ring, highlights          |
-| `--c-muted`        | `#878787` | Secondary text, captions, borders                |
-| `--c-ivory`        | `#F2EDE0` | Main text color; top header bar background       |
+| `--c-navy`         | `#212431` | Page background                                  |
+| `--c-slate`        | `#2A2F3F` | Reserved (not used on the page yet)              |
+| `--c-accent`       | `#FC5C02` | Section numbers, primary button, focus ring, input focus |
+| `--c-muted`        | `#878787` | Hairline rules, meta row, captions, secondary text |
+| `--c-ivory`        | `#F2EDE0` | Main text; strong rules; top bar background      |
 
-- Text: ivory on bg (high contrast). Use muted only for small, non-essential text, and check it passes WCAG AA at the size used (#878787 on #212431 is about 4.6:1, which passes AA for body text).
-- Primary button: orange background with `#212431` text. Use bold weight, since ivory on orange is too low-contrast for small text.
-- Shapes: rounded corners and circles, echoing the knobs, rings and the round letters of the BLEEPTOOLS logo. Radius tokens: `--r-sm: 6px`, `--r-md: 12px`, `--r-pill: 999px`.
-- Typography: Inter only.
-  - Wordmark "pritoki": 600, lowercase, tight letter-spacing, scaled with `clamp()`.
-  - Section headings (h2): 700. Body text: 400, line-height 1.6, max width about 60ch.
-- Spacing scale: 4 / 8 / 16 / 24 / 40 / 64 / 96 px.
+- Text: ivory on navy. Muted grey only for small, secondary text (#878787 on #212431 is about 4.6:1, passes AA).
+- Rules: `--rule` 1px muted (between feature blocks, meta row, footer), `--rule-strong` 2px ivory (under the title, above signup, input underline).
+- Corners: square everywhere (buttons, inputs, snapshot slots). The only round shapes are the app's knobs and rings.
+- Buttons: rectangular. Primary: orange with navy text, turns ivory on hover. Secondary: 2px ivory outline, fills ivory on hover.
+- Typography: Inter only, flush left, ragged right.
+  - Wordmark "pritoki": 700, lowercase, letter-spacing -0.065em, line-height 0.8, up to about 19rem (nearly full content width).
+  - Tagline and h2: 700, line-height 1.05, letter-spacing -0.03em.
+  - Meta labels: 12px, 600, uppercase, letter-spacing 0.06em.
+  - Body: 400, line-height 1.5, max width about 46–52ch.
 
-## 4. Breakpoints (mobile-first)
+## 4. Breakpoints and grid (mobile-first)
 
-| Name    | Min width | Layout                                                    |
+| Name    | Min width | Grid                                                      |
 |---------|-----------|-----------------------------------------------------------|
-| base    | 0         | Single column, 16px side gutters, image then text          |
-| `md`    | 768px     | Wider gutters, larger type                                 |
-| `lg`    | 1024px    | Feature blocks become 2 columns; image side alternates     |
-| `xl`    | 1280px    | Content max width about 1200px, centered                   |
+| base    | 0         | 4 columns, 16px gutters and column gap; everything stacks |
+| `md`    | 768px     | 24px gutters and column gap; meta row in 4 columns; form input and button side by side |
+| `lg`    | 1024px    | 12 columns, 40px gutters; content max width 1200px        |
 
 No horizontal scrolling at 320px width.
 
@@ -75,65 +78,64 @@ No horizontal scrolling at 320px width.
 
 ### 5.2 Hero
 - Source copy: `# pritoki` and the lines below it in `texts.md`.
-- Order on mobile:
-  1. Wordmark **pritoki** (h1)
-  2. Tagline: "One voice. Three tracks. Endless in-betweens." (large, ivory)
-  3. Platform line (muted): "Rhythmic synthesizer for iPad & Mac · Standalone + AUv3"
-  4. CTAs: **Join the beta** (primary, orange) and **Get notified** (secondary, outlined, jumps to `#signup`)
-  5. Hero image: `One voice.png` (iPad screenshot), full width
-  6. Intro paragraph ("Every hit is a blend…")
-- On `lg` and up: text and buttons on the left, iPad image on the right and allowed to bleed past the content width a little. The intro paragraph goes under the buttons.
-- Optional: a subtle orange glow behind the iPad.
+- Order:
+  1. Meta row: "Rhythmic synthesizer / iPad & Mac / Standalone + AUv3 / Beta 2026". Each item has a hairline rule on top. 2 columns on mobile, 4 from `md`, 3 grid columns each on `lg`.
+  2. Wordmark **pritoki** (h1), nearly full width.
+  3. Strong ivory rule, then a row with:
+     - Tagline on three lines: "One voice. / Three tracks. / Endless in-betweens." (`lg`: columns 1–6)
+     - Intro paragraph ("Every hit is a blend…") and CTAs: **Join the beta →** (primary) and **Get notified** (secondary, jumps to `#signup`) (`lg`: columns 8–12)
+  4. Hero image: `One voice.png` (iPad screenshot), full content width.
 
 ### 5.3 Feature blocks
 There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with an h2 and a paragraph, plus a visual.
 
 | # | Heading                                         | Visual                                   | Notes |
 |---|-------------------------------------------------|------------------------------------------|-------|
-| 1 | Generate a groove. Then make it yours.          | `Generate a groove.png` (563×563)        | Sequencer ring. Show at no more than about 420px wide. |
+| 1 | Generate a groove. Then make it yours.          | `Generate a groove.png` (563×563)        | Sequencer ring. Show at no more than 280px wide. |
 | 2 | Blend and shape.                                | `Blend and shape.png` (638×432)          | XY pad with blend modes. |
 | 3 | Capture a moment. Morph to the next.            | **SVG/CSS rebuild** (see 6.1)            | Morph knob plus S1–S4. |
 | 4 | Change the model. Change the character.         | **SVG/CSS rebuild** (see 6.2)            | Large Model knob. |
-| 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, cap its height at about 360px and crop from the top with `object-fit: cover; object-position: top`. |
-| 6 | Add grit. Let it ring.                          | **Placeholder**, asset to come            | Use an aspect-ratio box (4:3) with a dashed muted border and the label "image coming". |
+| 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, show it 180×260px, cropped from the top with `object-fit: cover; object-position: top`. |
+| 6 | Add grit. Let it ring.                          | **Placeholder**, asset to come            | See placeholders below. |
 | 7 | Play it on its own. Plug it into your setup.    | **Placeholder**, asset to come            | Same as above. |
 
 Layout:
-- base: visual on top, then heading and text. Visuals are centered, on a `--c-surface` rounded panel with padding.
-- `lg`: two columns (visual about 45% and text about 55%). The visual side alternates: odd blocks have the visual on the left, even blocks on the right.
-- Vertical rhythm: 64px between blocks on mobile, 96px on desktop.
-- Optional: a small orange index number ("01" to "07") above each heading.
+- Each block starts with a 1px muted rule across the full content width.
+- base: number, heading, text, then the visual (left-aligned, no panel).
+- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12, all top-aligned.
+- Visuals sit directly on the navy background. Image max width 320px (sequencer ring 280px).
+- Orange index number ("01" to "07") above/left of each heading.
+- Vertical rhythm: 16px from rule to content; 64px after each block on mobile, 96px on desktop.
+- Placeholders: 4:3 box with a hairline border and a diagonal line, label "IMAGE COMING".
 
 ### 5.4 Signup (`#signup`)
-- Panel on `--c-surface`, centered, with a max width of about 560px.
+- Starts with a strong ivory rule. Uses the feature grid: "→" in the number column, heading and subline in columns 3–7, form in 8–12.
 - Heading: "Get notified at launch". Subline (muted): "One email when pritoki is out. No spam."
 - Form:
-  - `<label>` "Email" (visually hidden is fine, but it must exist), `<input type="email" required autocomplete="email">`
-  - Button: **Notify me** (primary)
+  - Visible label "EMAIL" (meta style), `<input type="email" required autocomplete="email">` styled as an underline only (2px ivory, orange on focus).
+  - Button: **Notify me** (primary).
   - Consent note under the form (small, muted): "By subscribing you agree to our [privacy policy]." (link placeholder)
-- Layout: input and button stacked on mobile, side by side from `md` up.
 - Behavior (not wired): `action` attribute left empty, marked `TODO`. JS stops the submit, checks the email with the browser's built-in validation, and shows an inline message in an `aria-live="polite"` region ("Thanks! We'll let you know."). Without JS, nothing breaks; the form just goes nowhere.
-- A second **Join the beta** button sits below the panel ("Want to try it now? Join the beta").
+- Below, after a hairline rule: "Want to try it now? **Join the beta →**" (text link).
 
 ### 5.5 Footer
-- Background `--c-bg`, with a thin muted top border.
-- Social links as text links: Instagram, YouTube, Discord (exact list to be decided, all `href="#"` for now). Ivory, turning orange on hover. Swap in SVG icons once the channels are final.
+- Hairline rule on top. On the 12-column grid: "bleeptools" (1–2), social links (3–4), legal links (5–6), fine print (8–12). Stacks on mobile.
+- Social links as text links: Instagram, YouTube, Discord (exact list to be decided, all `href="#"` for now). Ivory, turning orange on hover.
 - Links: Impressum · Privacy policy (placeholders).
-- "© 2026 bleeptools". Small and muted.
-- Apple trademark note (optional): "iPad, Mac and GarageBand are trademarks of Apple Inc."
+- Fine print (muted): "© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc."
 
 ## 6. Rebuilt visuals (SVG/CSS)
 
-Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small dark dot as the indicator, labels in Inter, and a dark panel behind them.
+Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small dark dot as the indicator, labels in Inter, on the navy page background. Snapshot slots have square corners.
 
 ### 6.1 Snapshots (block 3)
-- Contents: a "Morph" label, a knob with its value ("1/4") underneath, and four buttons S1–S4. The active one is orange; the others use `--c-surface` with ivory text.
+- Contents: a "Morph" label, a knob with its value ("1/4") underneath, and four buttons S1–S4. The active one is orange; the others are `#3A3F50` with ivory text.
 - base: lay it out **horizontally** (knob on the left, S1–S4 in a row). The source image is very tall and narrow, which wastes space on a phone.
 - `lg`: vertical column, as in the app.
 - Optional animation: the active snapshot moves S1 → S2 → S3 → S4 every few seconds, crossfading the orange. Turned off under `prefers-reduced-motion`.
 
 ### 6.2 Model knob (block 4)
-- One large knob (about 160–200px) with the label "Model".
+- One large knob (110–140px) with the label "Model" and a "FUSED ↔ LAYERED" scale underneath.
 - Optional animation: the knob slowly turns back and forth, with a faint label underneath showing the change ("tones bend into one" ↔ "layered voices"). Turned off under `prefers-reduced-motion`.
 - Either inline SVG or CSS with a `rotate` transform on the indicator.
 
