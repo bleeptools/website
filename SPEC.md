@@ -13,7 +13,7 @@ Status: draft v1, 2026-11-01
 |-------------|---------------------------------------|---------------|
 | `/`         | Holding page: logo and "Coming soon"  | this file, §4 |
 | `/pritoki/` | pritoki landing page                  | `pritoki.md`  |
-| `/legal/`   | Imprint and privacy policy (EN and DE) | drafts, contents still marked `todo` |
+| `/legal/`   | Imprint and privacy policy (EN and DE) | this file, §5 (contents still marked `todo`) |
 
 Each product gets its own folder with its own `index.html`, CSS, JS and images, plus its own spec file in the root (`<product>.md`).
 
@@ -25,7 +25,7 @@ Each product gets its own folder with its own `index.html`, CSS, JS and images, 
 - File layout:
   ```
   index.html            # holding page
-  css/style.css         # holding page styles
+  css/style.css         # holding page and legal page styles
   fonts/                # shared: Inter, self-hosted (variable woff2, Latin subset)
   img/                  # shared: logo-bleeptools.png, favicon.svg
   assets/               # shared source files (logo.png), not referenced by any page
@@ -61,7 +61,16 @@ Swiss Style (International Typographic Style), shared across all pages: Inter on
 - Meta: `<title>` "bleeptools · coming soon", a short meta description, `lang="en"`, `theme-color` `#F2EDE0`, favicon `img/favicon.svg`.
 - No JS.
 
-## 5. Placeholders and open items
+## 5. Legal pages (`/legal/`)
+
+- `imprint-en.html`, `imprint-de.html`, `privacy-en.html`, `privacy-de.html`. They use the same stylesheet as the holding page: navy on ivory, Inter, `noindex`.
+- Top bar: logo (28px tall, links home) on the left, language switch ("Deutsch" / "English") on the right, 1px navy rule underneath.
+- Head: meta row in the label style ("Legal" / "Rechtliches", plus "Last updated" / "Stand" on the privacy pages), then the h1 (700, up to 5rem, letter-spacing -0.045em), then a 2px navy rule.
+- Body: base, one column with a text width of about 62ch. Each h2 has a 1px rule on top. `lg`, 12 columns: h2 in columns 1–4, text in columns 5–11, and the rule runs across both, broken at the column gap.
+- Draft values are wrapped in `.todo` and shown with a light orange highlight until they are confirmed.
+- Footer as on the holding page. The links go to the imprint and privacy policy in the same language, and the current page's link is orange (`aria-current="page"`).
+
+## 6. Placeholders and open items
 
 | Item                          | Current value  | Owner |
 |-------------------------------|----------------|-------|

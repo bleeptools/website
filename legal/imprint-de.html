@@ -3,49 +3,71 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Impressum</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; background: #fff; }
-    h1, h2 { line-height: 1.25; }
-    a { color: #0b57d0; }
-    .todo { background: #fff3b0; padding: 0 .2em; }
-    @media (prefers-color-scheme: dark) {
-      body { color: #eaeaea; background: #121212; }
-      a { color: #8ab4f8; }
-      .todo { background: #5c4b00; }
-    }
-  </style>
+  <title>Impressum · bleeptools</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F2EDE0">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <p><a href="../">&larr; Zurück zur Startseite</a> · <a href="imprint-en.html" hreflang="en" lang="en">English</a></p>
 
-  <h1>Impressum</h1>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__logo" href="../" aria-label="bleeptools, zurück zur Startseite">
+        <img src="../img/logo-bleeptools.png" alt="" width="500" height="191">
+      </a>
+      <a class="topbar__link" href="imprint-en.html" hreflang="en" lang="en">English</a>
+    </div>
+  </header>
 
-  <h2>Angaben gemäß § 5 DDG</h2>
-  <p>
-    <span class="todo">bleeptools by Vladyslav Lytvynenko</span><br>
-    <span class="todo">Brauhausstr. 6</span><br>
-    <span class="todo">13086 Berlin</span><br>
-    Deutschland
-  </p>
+  <main class="legal wrap">
+    <div class="legal__head">
+      <ul class="legal__meta">
+        <li>Rechtliches</li>
+      </ul>
+      <h1>Impressum</h1>
+    </div>
 
-  <h2>Kontakt</h2>
-  <p>
-    E-Mail: <a href="mailto:bleeptools@icloud.com" class="todo">bleeptools@icloud.com</a><br>
-  </p>
+    <article class="legal__body">
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p>
+        bleeptools by Vladyslav Lytvynenko<br>
+        Brauhausstr. 6<br>
+        13086 Berlin<br>
+        Deutschland
+      </p>
 
-  <h2>Umsatzsteuer-ID</h2>
-  <p>
-    <!-- Nur angeben, wenn Sie eine USt-IdNr. nach § 27a UStG haben. Sonst diesen ganzen Abschnitt löschen. -->
-    Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
-    <span class="todo">DE419295391</span>
-  </p>
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <a href="mailto:bleeptools@icloud.com">bleeptools@icloud.com</a><br>
+      </p>
 
-  <h2>Verbraucherstreitbeilegung</h2>
-  <p>
-    Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-  </p>
+      <h2>Umsatzsteuer-ID</h2>
+      <p>
+        <!-- Nur angeben, wenn Sie eine USt-IdNr. nach § 27a UStG haben. Sonst diesen ganzen Abschnitt löschen. -->
+        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+        DE419295391
+      </p>
 
-  <p><a href="privacy-de.html">Datenschutzerklärung</a></p>
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>
+        Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__fine">© 2026 bleeptools</p>
+      <ul class="footer__links" aria-label="Rechtliches">
+        <li><a href="imprint-de.html" aria-current="page">Impressum</a></li>
+        <li><a href="privacy-de.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* bleeptools holding page. Swiss Style, same tokens as pritoki/css/style.css:
+/* bleeptools site pages: holding page and legal pages. Swiss Style, same tokens as pritoki/css/style.css:
    ivory ground, navy type, hairline rules, square corners, orange as the
    only signal color. Mobile-first; see SPEC.md */
 
@@ -44,7 +44,7 @@ body {
 }
 
 img { display: block; max-width: 100%; height: auto; }
-h1, p, ul { margin: 0; }
+h1, h2, h3, p, ul { margin: 0; }
 ul { padding: 0; list-style: none; }
 a { color: inherit; }
 
@@ -84,6 +84,108 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 
+/* ---------- Top bar (legal pages) ---------- */
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  /* Hairline inset to the content width, as on the footer */
+  background: linear-gradient(var(--c-navy), var(--c-navy)) center bottom / calc(100% - 2 * var(--gutter)) 1px no-repeat;
+}
+
+.topbar__logo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.topbar__logo img { width: auto; height: 28px; }
+
+.topbar__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: .875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.topbar__link:hover { color: var(--c-accent); }
+
+/* ---------- Legal pages: imprint, privacy policy ---------- */
+
+.legal {
+  flex: 1;
+  padding-block: 32px 96px;
+}
+
+.legal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.legal__head {
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--c-navy);
+}
+
+.legal h1 {
+  margin: 24px 0 0 -.03em;
+  font-size: clamp(2.25rem, 10vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.045em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Mobile: one column. lg: each h2 sits left of its text (see below). */
+.legal__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--gutter);
+  margin-top: 32px;
+}
+
+.legal__body > * { max-width: 62ch; }
+
+.legal h2 {
+  margin-top: 48px;
+  padding-top: 12px;
+  border-top: var(--rule);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+}
+.legal h2:first-child { margin-top: 0; border-top: 0; }
+
+.legal h3 {
+  margin-top: 24px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.legal p,
+.legal ul { margin-top: 12px; }
+
+.legal__body ul { padding-left: 1.25em; list-style: square; }
+.legal__body li + li { margin-top: 4px; }
+
+.legal__body a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.legal__body a:hover { color: var(--c-accent); }
+
+/* Draft values still to be confirmed */
+.todo { background: rgba(252, 92, 2, .18); }
+
 /* ---------- Footer ---------- */
 
 .footer__inner {
@@ -110,7 +212,8 @@ a { color: inherit; }
   font-weight: 600;
   text-decoration: none;
 }
-.footer a:hover { color: var(--c-accent); }
+.footer a:hover,
+.footer a[aria-current="page"] { color: var(--c-accent); }
 
 /* ---------- md: 768px ---------- */
 
@@ -122,4 +225,20 @@ a { color: inherit; }
 
 @media (min-width: 1024px) {
   :root { --gutter: 40px; }
+
+  .legal { padding-block: 48px 128px; }
+  .legal h1 { margin-top: 32px; }
+
+  /* 12 columns: h2 in 1–4, text in 5–11. The h2 and the element next to it
+     both carry the rule, so it runs across the row with a column gap. */
+  .legal__body { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .legal__body > * { grid-column: 5 / span 7; max-width: none; }
+  .legal__body > h2 { grid-column: 1 / span 4; }
+  .legal__body > h2 + * {
+    margin-top: 48px;
+    padding-top: 12px;
+    border-top: var(--rule);
+  }
+  .legal__body > h2:first-child + * { margin-top: 0; border-top: 0; }
+  .legal__body > h2 + h3 { padding-top: 14px; }
 }

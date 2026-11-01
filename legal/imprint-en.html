@@ -3,48 +3,70 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Legal Notice</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; background: #fff; }
-    h1, h2 { line-height: 1.25; }
-    a { color: #0b57d0; }
-    .todo { background: #fff3b0; padding: 0 .2em; }
-    @media (prefers-color-scheme: dark) {
-      body { color: #eaeaea; background: #121212; }
-      a { color: #8ab4f8; }
-      .todo { background: #5c4b00; }
-    }
-  </style>
+  <title>Legal Notice · bleeptools</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F2EDE0">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <p><a href="../">&larr; Back to home</a> · <a href="imprint-de.html" hreflang="de" lang="de">Deutsch</a></p>
 
-  <h1>Legal Notice (Impressum)</h1>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__logo" href="../" aria-label="bleeptools, back to home">
+        <img src="../img/logo-bleeptools.png" alt="" width="500" height="191">
+      </a>
+      <a class="topbar__link" href="imprint-de.html" hreflang="de" lang="de">Deutsch</a>
+    </div>
+  </header>
 
-  <h2>Information pursuant to § 5 DDG (German Digital Services Act)</h2>
-  <p>
-    <span class="todo">bleeptools by Vladyslav Lytvynenko</span><br>
-    <span class="todo">Brauhausstr. 6</span><br>
-    <span class="todo">13086 Berlin</span><br>
-    Germany
-  </p>
+  <main class="legal wrap">
+    <div class="legal__head">
+      <ul class="legal__meta">
+        <li>Legal</li>
+      </ul>
+      <h1>Legal Notice (Impressum)</h1>
+    </div>
 
-  <h2>Contact</h2>
-  <p>
-    E-Mail: <a href="mailto:bleeptools@icloud.com" class="todo">bleeptools@icloud.com</a><br>
-  </p>
+    <article class="legal__body">
+      <h2>Information pursuant to § 5 DDG (German Digital Services Act)</h2>
+      <p>
+        bleeptools by Vladyslav Lytvynenko<br>
+        Brauhausstr. 6<br>
+        13086 Berlin<br>
+        Germany
+      </p>
 
-  <h2>VAT ID</h2>
-  <p>
-    VAT identification number pursuant to § 27a of the German VAT Act:<br>
-    <span class="todo">DE419295391</span>
-  </p>
+      <h2>Contact</h2>
+      <p>
+        E-Mail: <a href="mailto:bleeptools@icloud.com">bleeptools@icloud.com</a><br>
+      </p>
 
-  <h2>Consumer dispute resolution</h2>
-  <p>
-    I am neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.
-  </p>
+      <h2>VAT ID</h2>
+      <p>
+        VAT identification number pursuant to § 27a of the German VAT Act:<br>
+        DE419295391
+      </p>
 
-  <p><a href="privacy-en.html">Privacy Policy</a></p>
+      <h2>Consumer dispute resolution</h2>
+      <p>
+        I am neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__fine">© 2026 bleeptools</p>
+      <ul class="footer__links" aria-label="Legal">
+        <li><a href="imprint-en.html" aria-current="page">Imprint</a></li>
+        <li><a href="privacy-en.html">Privacy policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
 </body>
 </html>
