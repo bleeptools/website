@@ -114,7 +114,7 @@ Layout:
 
 ### 5.4 Signup (`#signup`)
 - Starts with a strong ivory rule. Uses the feature grid: "→" in the number column, heading and subline in columns 3–7, form in 8–12.
-- Heading: "Get notified at launch". Subline (muted): "One email when pritoki is out. No spam."
+- Heading: "Stay in the loop". Subline (muted): "Occasional news about pritoki and future bleeptools instruments. No spam."
 - Form:
   - Visible label "EMAIL" (meta style), `<input type="email" required autocomplete="email">` styled as an underline only (2px ivory, orange on focus).
   - Button: **Notify me** (primary).
