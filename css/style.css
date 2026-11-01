@@ -199,7 +199,7 @@ a { color: inherit; }
 
 .feature {
   row-gap: 24px;
-  padding-block: 16px 64px;
+  padding-block: 16px 32px;
   border-top: var(--rule);
 }
 
@@ -393,15 +393,12 @@ a { color: inherit; }
 
   /* Index | text | visual, on the same columns for every block */
   .feature {
-    padding-block: 16px 96px;
+    padding-block: 16px 48px;
     align-items: start;
   }
   .feature__index { grid-column: 1 / span 2; }
   .feature__text { grid-column: 3 / span 5; }
-  .feature__visual {
-    grid-column: 8 / span 5;
-    justify-self: start;
-  }
+  .feature__visual { grid-column: 8 / span 5; }
 
   .feature__img--tall {
     max-width: 150px;

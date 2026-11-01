@@ -102,10 +102,10 @@ There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with a
 Layout:
 - Each block starts with a 1px muted rule across the full content width.
 - base: number, heading, text, then the visual (centered, no panel).
-- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12 (left-aligned), all top-aligned.
+- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12 (centered in its columns), all top-aligned.
 - Visuals sit directly on the navy background. Image max width 320px (sequencer ring 280px).
 - Orange index number ("01" to "07") above/left of each heading.
-- Vertical rhythm: 16px from rule to content; 64px after each block on mobile, 96px on desktop.
+- Vertical rhythm: 16px from rule to content; 32px after each block on mobile, 48px on desktop.
 
 ### 5.4 Signup (`#signup`)
 - Starts with a strong ivory rule. Uses the feature grid: "→" in the number column, heading and subline in columns 3–7, form in 8–12.
