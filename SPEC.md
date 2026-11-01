@@ -1,185 +1,71 @@
-# pritoki landing page: spec
+# bleeptools website: spec
 
-Landing page for **pritoki**, a rhythmic synthesizer by bleeptools for iPad and Mac (standalone app and AUv3 plugin).
-Goals: explain the instrument, send people to the beta, and collect emails for the launch.
+The website of **bleeptools**, a maker of music software for iPad and Mac.
+For now it has a holding page at the root and one product page, pritoki.
 
-Status: draft v2 (Swiss Style), 2026-11-01
+Status: draft v1, 2026-11-01
 
 ---
 
-## 1. Scope
+## 1. Pages
 
-**In scope**
-- One responsive page, designed mobile-first.
-- Button to join the beta (link target empty for now: `href="#"`, marked `TODO`).
-- Mailing list signup form, not connected to any service yet (UI and client-side validation only).
-- Footer links for Impressum, privacy policy and social channels (all placeholders).
+| Path        | Page                                  | Spec          |
+|-------------|---------------------------------------|---------------|
+| `/`         | Holding page: logo and "Coming soon"  | this file, §4 |
+| `/pritoki/` | pritoki landing page                  | `pritoki.md`  |
+| `/legal/`   | Imprint and privacy policy (EN and DE) | drafts, contents still marked `todo` |
 
-**Out of scope for now**
-- Connecting the form to a newsletter provider.
-- The Impressum and privacy policy pages themselves (links only).
-- Analytics, cookies, or any third-party requests.
-- A light theme. The page is dark only, like the instrument.
+Each product gets its own folder with its own `index.html`, CSS, JS and images, plus its own spec file in the root (`<product>.md`).
 
 ## 2. Tech
 
 - Plain HTML, CSS and a small amount of vanilla JS. No build step and no framework.
+- Must work as plain static files on any host (GitHub Pages planned). Links between pages are relative.
+- No cookies, no analytics, no third-party requests.
 - File layout:
   ```
-  index.html
-  css/style.css
-  js/main.js            # form handling, small enhancements
-  fonts/                # Inter, self-hosted (woff2)
-  img/                  # optimized images, kebab-case names
-  assets/               # original source files, not referenced by the page
+  index.html            # holding page
+  css/style.css         # holding page styles
+  fonts/                # shared: Inter, self-hosted (variable woff2, Latin subset)
+  img/                  # shared: logo-bleeptools.png, favicon.svg
+  assets/               # shared source files (logo.png), not referenced by any page
+  legal/                # imprint and privacy policy
+  pritoki/              # pritoki landing page, see pritoki.md
+  SPEC.md               # this file
+  pritoki.md            # pritoki spec
   ```
-- Self-host Inter (variable woff2, Latin subset) so the page makes no requests to Google Fonts (GDPR).
-- Must work as plain static files on any host.
 
-## 3. Design language and tokens
+## 3. Design language
 
-Style: **Swiss Style** (International Typographic Style). Strict grid, hairline rules, oversized flush-left type, square corners, generous space, orange as the only signal color.
+Swiss Style (International Typographic Style), shared across all pages: Inter only, hairline rules, square corners, generous space, orange as the only signal color. Tokens:
 
-| Token              | Value     | Use                                              |
-|--------------------|-----------|--------------------------------------------------|
-| `--c-navy`         | `#212431` | Page background                                  |
-| `--c-slate`        | `#2A2F3F` | Reserved (not used on the page yet)              |
-| `--c-accent`       | `#FC5C02` | Section numbers, primary button, focus ring, input focus |
-| `--c-muted`        | `#878787` | Hairline rules, meta row, captions, secondary text |
-| `--c-ivory`        | `#F2EDE0` | Main text; strong rules; top bar background      |
+| Token        | Value     |
+|--------------|-----------|
+| `--c-navy`   | `#212431` |
+| `--c-accent` | `#FC5C02` |
+| `--c-muted`  | `#878787` |
+| `--c-ivory`  | `#F2EDE0` |
 
-- Text: ivory on navy. Muted grey only for small, secondary text (#878787 on #212431 is about 4.6:1, passes AA).
-- Rules: `--rule` 1px muted (between feature blocks, meta row, footer), `--rule-strong` 2px ivory (under the title, above signup, input underline).
-- Corners: square everywhere (buttons, inputs, snapshot slots). The only round shapes are the app's knobs and rings.
-- Buttons: rectangular. Primary: orange with navy text, turns ivory on hover. Secondary: 2px ivory outline, fills ivory on hover.
-- Typography: Inter only, flush left, ragged right.
-  - Wordmark "pritoki": 700, lowercase, letter-spacing -0.065em, line-height 0.8, up to about 19rem (nearly full content width).
-  - Tagline and h2: 700, line-height 1.05, letter-spacing -0.03em.
-  - Meta labels: 12px, 600, uppercase, letter-spacing 0.06em.
-  - Body: 400, line-height 1.5, max width about 46–52ch.
+- Product pages are dark (ivory on navy). The holding page is light (navy on ivory), matching the ivory top bar on product pages.
+- On ivory, use navy for all text. `--c-muted` is too light on ivory (about 3.2:1) for small text.
+- Breakpoints and gutters as in `pritoki.md` §4: 16px base, 24px from 768px, 40px from 1024px; content max width 1200px.
+- Focus ring: 2px orange outline with an offset. Interactive targets at least 44px tall.
 
-## 4. Breakpoints and grid (mobile-first)
+## 4. Holding page (`/`)
 
-| Name    | Min width | Grid                                                      |
-|---------|-----------|-----------------------------------------------------------|
-| base    | 0         | 4 columns, 16px gutters and column gap; everything stacks |
-| `md`    | 768px     | 24px gutters and column gap; meta row in 4 columns; form input and button side by side |
-| `lg`    | 1024px    | 12 columns, 40px gutters; content max width 1200px        |
+- Background `--c-ivory`, text `--c-navy`. Fills the viewport (`min-height: 100svh`), with the footer at the bottom.
+- Center of the page:
+  - BLEEPTOOLS logo (`img/logo-bleeptools.png`, 500×191) as the h1, with `alt="bleeptools"`. Width 180–250px; no more than 250px so it stays sharp on 2x screens.
+  - "Coming soon" under it, in the meta-label style (12px, 600, uppercase, letter-spacing 0.06em), with a short 1px navy rule on top.
+- Footer: links go to `legal/imprint-en.html` and `legal/privacy-en.html`. 1px navy rule across the content width. "© 2026 bleeptools" on the left, "Imprint · Privacy policy" on the right; wraps on narrow screens. Links are navy and turn orange on hover.
+- Meta: `<title>` "bleeptools · coming soon", a short meta description, `lang="en"`, `theme-color` `#F2EDE0`, favicon `img/favicon.svg`.
+- No JS.
 
-No horizontal scrolling at 320px width.
+## 5. Placeholders and open items
 
-## 5. Page structure
+| Item                          | Current value  | Owner |
+|-------------------------------|----------------|-------|
+| Link to pritoki from `/`      | none yet       | you   |
+| Domain                        | unknown        | you   |
 
-### 5.1 Top bar (ivory)
-- Thin full-width bar, background `--c-ivory`, about 48px tall on mobile.
-- Left: BLEEPTOOLS logo (`logo.png`, 500×191). The dark letters and orange B read well on ivory. Shown at about 28–32px height and linked to the bleeptools site (placeholder URL).
-- Right (from `md` up): a small "Join the beta" text link. On mobile, nothing else goes in the bar.
-- Not sticky. It scrolls away with the page.
-
-### 5.2 Hero
-- Source copy: `# pritoki` and the lines below it in `texts.md`.
-- Order:
-  1. Meta row: "Rhythmic synthesizer / iPad & Mac / Standalone + AUv3 / Beta 2026". Each item has a hairline rule on top. 2 columns on mobile, 4 from `md`, 3 grid columns each on `lg`.
-  2. Wordmark **pritoki** (h1), nearly full width.
-  3. Strong ivory rule, then a row with:
-     - Tagline on three lines: "One voice. / Three tracks. / Endless in-betweens." (`lg`: columns 1–6)
-     - Intro paragraph ("Every hit is a blend…") and CTAs: **Join the beta →** (primary) and **Get notified** (secondary, jumps to `#signup`) (`lg`: columns 8–12)
-  4. Hero image: `One voice.png` (iPad screenshot), full content width.
-
-### 5.3 Feature blocks
-There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with an h2 and a paragraph, plus a visual.
-
-| # | Heading                                         | Visual                                   | Notes |
-|---|-------------------------------------------------|------------------------------------------|-------|
-| 1 | Generate a groove. Then make it yours.          | `Generate a groove.png` (563×563)        | Sequencer ring. Show at no more than 280px wide. |
-| 2 | Blend and shape.                                | `Blend and shape.png` (638×432)          | XY pad with blend modes. |
-| 3 | Capture a moment. Morph to the next.            | **SVG/CSS rebuild** (see 6.1)            | Morph knob plus S1–S4. |
-| 4 | Change the model. Change the character.         | **SVG/CSS rebuild** (see 6.2)            | Large Model knob. |
-| 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, show it 180×260px, cropped from the top with `object-fit: cover; object-position: top`. |
-| 6 | Add grit. Let it ring.                          | None for now (asset to come)             | Text only. |
-| 7 | Play it on its own. Plug it into your setup.    | None for now (asset to come)             | Text only. |
-
-Layout:
-- Each block starts with a 1px muted rule across the full content width.
-- base: number, heading, text, then the visual (centered, no panel).
-- `lg`: the same columns for every block (no alternating): number in columns 1–2, heading and text in 3–7, visual in 8–12 (centered in its columns), all top-aligned.
-- Visuals sit directly on the navy background. Image max width 320px (sequencer ring 280px).
-- Orange index number ("01" to "07") above/left of each heading.
-- Vertical rhythm: 16px from rule to content; 32px after each block on mobile, 48px on desktop.
-
-### 5.4 Signup (`#signup`)
-- Starts with a strong ivory rule. Uses the feature grid: "→" in the number column, heading and subline in columns 3–7, form in 8–12.
-- Heading: "Get notified at launch". Subline (muted): "One email when pritoki is out. No spam."
-- Form:
-  - Visible label "EMAIL" (meta style), `<input type="email" required autocomplete="email">` styled as an underline only (2px ivory, orange on focus).
-  - Button: **Notify me** (primary).
-  - Consent note under the form (small, muted): "By subscribing you agree to our [privacy policy]." (link placeholder)
-- Behavior (not wired): `action` attribute left empty, marked `TODO`. JS stops the submit, checks the email with the browser's built-in validation, and shows an inline message in an `aria-live="polite"` region ("Thanks! We'll let you know."). Without JS, nothing breaks; the form just goes nowhere.
-- Below, after a hairline rule: "Want to try it now? **Join the beta →**" (text link).
-
-### 5.5 Footer
-- Hairline rule on top. On the 12-column grid: "bleeptools" (1–2), social links (3–4), legal links (5–6), fine print (8–12). Stacks on mobile.
-- Social links as text links: Instagram, YouTube, Discord (exact list to be decided, all `href="#"` for now). Ivory, turning orange on hover.
-- Links: Impressum · Privacy policy (placeholders).
-- Fine print (muted): "© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc."
-
-## 6. Rebuilt visuals (SVG/CSS)
-
-Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small dark dot as the indicator, labels in Inter, on the navy page background. Snapshot slots have square corners.
-
-### 6.1 Snapshots (block 3)
-- Contents: a "Morph" label, a knob with its value ("1/4") underneath, and four buttons S1–S4. The active one is orange; the others are `#3A3F50` with ivory text.
-- base: lay it out **horizontally** (knob on the left, S1–S4 in a row). The source image is very tall and narrow, which wastes space on a phone.
-- `lg`: vertical column, as in the app.
-- Optional animation: the active snapshot moves S1 → S2 → S3 → S4 every few seconds, crossfading the orange. Turned off under `prefers-reduced-motion`.
-
-### 6.2 Model knob (block 4)
-- One large knob (110–140px) with the label "Model" and a "FUSED ↔ LAYERED" scale underneath.
-- Optional animation: the knob slowly turns back and forth, with a faint label underneath showing the change ("tones bend into one" ↔ "layered voices"). Turned off under `prefers-reduced-motion`.
-- Either inline SVG or CSS with a `rotate` transform on the indicator.
-
-## 7. Images
-
-- Rename to kebab-case in `img/` (no spaces): `hero-ipad`, `generate-a-groove`, `blend-and-shape`, `play-it-like-an-instrument`, `logo-bleeptools`.
-- Export AVIF with a PNG fallback through `<picture>` (WebP skipped: no encoder available locally, and AVIF is smaller).
-- Hero (656 KB source, 2615px): responsive `srcset` at 800, 1400 and 2000w. Target under 200 KB for the mobile size.
-- Every `<img>` has `width`/`height` set to prevent layout shift. Use `loading="lazy"` for everything except the logo and hero (hero gets `fetchpriority="high"`).
-- Alt text describes what the screenshot shows, e.g. "pritoki on iPad: three circular sequencer rings around an XY blend pad".
-
-## 8. Accessibility
-
-- Semantic landmarks: `header`, `main`, `section` (each labelled by its h2), `footer`.
-- One h1 (pritoki), and an h2 for each block.
-- Visible focus ring: 2px orange outline with an offset.
-- All interactive targets at least 44×44px.
-- Decorative SVG rebuilds: `aria-hidden="true"`, or `role="img"` with a short label.
-- Respect `prefers-reduced-motion`.
-- Checked with keyboard only and with VoiceOver on iOS Safari.
-
-## 9. Meta / SEO
-
-- `<title>`: "pritoki: rhythmic synthesizer for iPad & Mac (AUv3) · bleeptools"
-- Meta description based on the tagline and the intro.
-- Open Graph and Twitter card tags. The OG image is a 1200×630 crop of the hero, generated once and stored in `img/og.png`.
-- `lang="en"`, `theme-color` set to `#212431`, favicon (a pritoki app icon if one exists; otherwise the orange "B" circle from the logo).
-
-## 10. Performance budget
-
-- Total page weight on the first mobile view: under 500 KB.
-- No render-blocking third-party resources.
-- Lighthouse mobile score of 95 or higher for Performance, Accessibility, Best Practices and SEO.
-
-## 11. Placeholders and open items
-
-| Item                         | Current value  | Owner |
-|------------------------------|----------------|-------|
-| Beta link (TestFlight)       | `#`            | you   |
-| Form endpoint / provider     | not wired      | you   |
-| Impressum URL                | `#`            | you   |
-| Privacy policy URL           | `#`            | you   |
-| Social channels and URLs     | `#`            | you   |
-| bleeptools site URL (logo)   | `#`            | you   |
-| Asset: Add grit              | text only      | you   |
-| Asset: Play it on its own    | text only      | you   |
-| App icon / favicon           | logo fallback  | you   |
-| Domain (for OG absolute URLs)| unknown        | you   |
+Product-specific items are listed in each product's spec.
