@@ -298,6 +298,9 @@ a { color: inherit; }
 }
 
 .signup__form .btn { justify-self: start; }
+.signup__form .btn:disabled { opacity: .6; cursor: progress; }
+
+.signup__hp { display: none !important; }
 
 .signup__status {
   min-height: 1.5em;

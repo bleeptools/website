@@ -19,7 +19,6 @@ Status: draft v2 (Swiss Style), 2026-11-01
 - Footer links for Impressum, privacy policy and social channels (all placeholders).
 
 **Out of scope for now**
-- Connecting the form to a newsletter provider.
 - Analytics, cookies, or any third-party requests.
 - A light theme. The page is dark only, like the instrument.
 
@@ -119,7 +118,10 @@ Layout:
   - Visible label "EMAIL" (meta style), `<input type="email" required autocomplete="email">` styled as an underline only (2px ivory, orange on focus).
   - Button: **Notify me** (primary).
   - Consent note under the form (small, muted): "By subscribing you agree to our [privacy policy]." (links to `../legal/privacy-en.html`)
-- Behavior (not wired): `action` attribute left empty, marked `TODO`. JS stops the submit, checks the email with the browser's built-in validation, and shows an inline message in an `aria-live="polite"` region ("Thanks! We'll let you know."). Without JS, nothing breaks; the form just goes nowhere.
+- Behavior: the form posts to a CleverReach signup form (`https://flow.cleverreach.com/fl/88aec855-248c-4b65-8b26-6b7c831bde7d/confirm`, field `email`). CleverReach handles double opt-in: it sends the confirmation email and logs consent. No CleverReach script is loaded; nothing goes to CleverReach until someone submits.
+  - With JS: the submit is sent in the background (`fetch`, `mode: "no-cors"`) so the visitor stays on the page. The response can't be read, so the message in the `aria-live="polite"` region only says to check the inbox ("Almost there! Check your inbox and confirm your email."). A network error shows "Something went wrong. Please try again."
+  - Without JS: the form posts normally and CleverReach's confirmation page opens in a new tab.
+  - Spam: a hidden honeypot field `email_confirm` (CleverReach's own name for it). If it is filled in, JS pretends the signup worked and sends nothing.
 - Below, after a hairline rule: "Want to try it now? **Join the beta →**" (text link).
 
 ### 5.5 Footer
@@ -179,7 +181,6 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 | Item                         | Current value  | Owner |
 |------------------------------|----------------|-------|
-| Form endpoint / provider     | not wired      | you   |
 | Social channels and URLs     | `#`            | you   |
 | Asset: Add grit              | text only      | you   |
 | Asset: Play it on its own    | text only      | you   |
