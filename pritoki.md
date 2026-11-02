@@ -96,7 +96,7 @@ There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with a
 | # | Heading                                         | Visual                                   | Notes |
 |---|-------------------------------------------------|------------------------------------------|-------|
 | 1 | Generate a groove. Then make it yours.          | `Generate a groove.png` (563×563)        | Sequencer ring. Show at no more than 280px wide. |
-| 2 | Blend and shape.                                | `Blend and shape.png` (638×432)          | XY pad with blend modes. |
+| 2 | Blend and shape.                                | `Blend and shape.png` (638×432) + **animated SVG overlay** (see 6.3) | XY pad with blend modes. |
 | 3 | Capture a moment. Morph to the next.            | **SVG/CSS rebuild** (see 6.1)            | Morph knob plus S1–S4. |
 | 4 | Change the model. Change the character.         | **SVG/CSS rebuild** (see 6.2)            | Large Model knob. |
 | 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, show it 180×260px, cropped from the top with `object-fit: cover; object-position: top`. |
@@ -144,6 +144,12 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 - One large knob (110–140px) with the label "Model" and a "FUSED ↔ LAYERED" scale underneath.
 - Optional animation: the knob slowly turns back and forth, with a faint label underneath showing the change ("tones bend into one" ↔ "layered voices"). Turned off under `prefers-reduced-motion`.
 - Either inline SVG or CSS with a `rotate` transform on the indicator.
+
+### 6.3 Blend pad cursor (block 2)
+- The screenshot stays; an inline SVG with the same `viewBox` (638×432, the image's pixels) sits on top of it and scales with it.
+- A disc in `--c-slate` (`#2A2F3F`, r 181 at 283.5/187.5) covers the dot and hairlines baked into the screenshot.
+- On top: the hairlines (2px, `#525560`) and the orange dot (r 24), clipped to the pad, plus a small static ivory dot (r 3) at the pad's center, under the orange dot.
+- Animation: the cursor drifts on X (7s) and Y (5s) separately, `ease-in-out alternate`, within ±105px of the center, so the dot never touches the edge. Turned off under `prefers-reduced-motion` (the cursor then rests on the center).
 
 ## 7. Images
 

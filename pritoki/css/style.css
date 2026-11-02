@@ -531,6 +531,36 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 
+/* Blend pad: the cursor (orange dot + hairlines) drifts around the pad on two
+   axes with different periods; the small center dot stays put. Offsets are in
+   the screenshot's pixels and stay within 105px of the center (pad radius 182,
+   dot radius 24). */
+.blend {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+}
+
+.blend__pad {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blend__x { animation: blend-x 7s ease-in-out -3.5s infinite alternate; }
+.blend__y { animation: blend-y 5s ease-in-out -1.2s infinite alternate; }
+
+@keyframes blend-x {
+  from { transform: translateX(-105px); }
+  to { transform: translateX(105px); }
+}
+
+@keyframes blend-y {
+  from { transform: translateY(-105px); }
+  to { transform: translateY(105px); }
+}
+
 @media (min-width: 1024px) {
   .snap { flex-direction: column; }
   .snap__slots { flex-direction: column; }
@@ -539,5 +569,7 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   .snap__slot,
-  .knob--lg { animation: none; }
+  .knob--lg,
+  .blend__x,
+  .blend__y { animation: none; }
 }
