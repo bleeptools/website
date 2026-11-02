@@ -20,7 +20,8 @@ Each product gets its own folder with its own `index.html`, CSS, JS and images, 
 ## 2. Tech
 
 - Plain HTML, CSS and a small amount of vanilla JS. No build step and no framework.
-- Must work as plain static files on any host (GitHub Pages planned). Links between pages are relative.
+- Must work as plain static files on any host. Links between pages are relative.
+- Hosting: GitHub Pages at https://bleep.tools, deployed by `.github/workflows/pages.yml` on every push to `main`. The workflow publishes everything except `*.md`, `assets/` folders and dotfiles.
 - No cookies, no analytics, no third-party requests.
 - File layout:
   ```
@@ -75,6 +76,5 @@ Swiss Style (International Typographic Style), shared across all pages: Inter on
 | Item                          | Current value  | Owner |
 |-------------------------------|----------------|-------|
 | Link to pritoki from `/`      | none yet       | you   |
-| Domain                        | unknown        | you   |
 
 Product-specific items are listed in each product's spec.

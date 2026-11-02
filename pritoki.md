@@ -185,4 +185,3 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 | Asset: Add grit              | text only      | you   |
 | Asset: Play it on its own    | text only      | you   |
 | App icon / favicon           | logo fallback  | you   |
-| Domain (for OG absolute URLs)| unknown        | you   |
