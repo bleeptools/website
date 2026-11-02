@@ -16,7 +16,7 @@ Status: draft v2 (Swiss Style), 2026-11-01
 - One responsive page, designed mobile-first.
 - Button to join the beta, linking to TestFlight: https://testflight.apple.com/join/NV3zgBBt
 - Mailing list signup form, not connected to any service yet (UI and client-side validation only).
-- Footer links for Impressum, privacy policy and social channels (all placeholders).
+- Footer links for Impressum, privacy policy and social channels.
 
 **Out of scope for now**
 - Analytics, cookies, or any third-party requests.
@@ -76,7 +76,7 @@ No horizontal scrolling at 320px width.
 
 ### 5.1 Top bar (ivory)
 - Thin full-width bar, background `--c-ivory`, about 48px tall on mobile.
-- Left: BLEEPTOOLS logo (`logo.png`, 500×191). The dark letters and orange B read well on ivory. Shown at about 28–32px height and linked to the bleeptools home page (`../`).
+- Left: BLEEPTOOLS logo (`../img/logo-bleeptools.png`, 500×191). The dark letters and orange B read well on ivory. Shown at about 28–32px height and linked to the bleeptools home page (`../`).
 - Right (from `md` up): a small "Join the beta" text link. On mobile, nothing else goes in the bar.
 - Not sticky. It scrolls away with the page.
 
@@ -126,7 +126,7 @@ Layout:
 
 ### 5.5 Footer
 - Hairline rule on top. On the 12-column grid: "bleeptools" (1–2), social links (3–4), legal links (5–6), fine print (8–12). Stacks on mobile.
-- Social links as text links: Instagram, YouTube, Discord (exact list to be decided, all `href="#"` for now). Ivory, turning orange on hover.
+- Social links as text links, ivory, turning orange on hover: Instagram (https://www.instagram.com/bleeptools/). YouTube and Discord are commented out in the markup until those channels exist.
 - Links: Impressum · Privacy policy (`../legal/imprint-en.html`, `../legal/privacy-en.html`).
 - Fine print (muted): "© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc."
 
@@ -181,7 +181,7 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 | Item                         | Current value  | Owner |
 |------------------------------|----------------|-------|
-| Social channels and URLs     | `#`            | you   |
+| YouTube and Discord channels | hidden         | you   |
 | Asset: Add grit              | text only      | you   |
 | Asset: Play it on its own    | text only      | you   |
 | App icon / favicon           | logo fallback  | you   |

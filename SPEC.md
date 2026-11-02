@@ -29,7 +29,6 @@ Each product gets its own folder with its own `index.html`, CSS, JS and images, 
   css/style.css         # holding page and legal page styles
   fonts/                # shared: Inter, self-hosted (variable woff2, Latin subset)
   img/                  # shared: logo-bleeptools.png, favicon.svg
-  assets/               # shared source files (logo.png), not referenced by any page
   legal/                # imprint and privacy policy
   pritoki/              # pritoki landing page, see pritoki.md
   SPEC.md               # this file
