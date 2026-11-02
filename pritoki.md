@@ -119,8 +119,8 @@ Layout:
   - Button: **Notify me** (primary).
   - Consent note under the form (small, muted): "By subscribing you agree to our [privacy policy]." (links to `../legal/privacy-en.html`)
 - Behavior: the form posts to a CleverReach signup form (`https://flow.cleverreach.com/fl/88aec855-248c-4b65-8b26-6b7c831bde7d/confirm`, field `email`). CleverReach handles double opt-in: it sends the confirmation email and logs consent. No CleverReach script is loaded; nothing goes to CleverReach until someone submits.
-  - With JS: the submit is sent in the background (`fetch`, `mode: "no-cors"`) so the visitor stays on the page. The response can't be read, so the message in the `aria-live="polite"` region only says to check the inbox ("Almost there! Check your inbox and confirm your email."). A network error shows "Something went wrong. Please try again."
-  - Without JS: the form posts normally and CleverReach's confirmation page opens in a new tab.
+  - The form submits normally (no `fetch`): CleverReach ignored background requests sent with `fetch`, so the browser posts the form itself and CleverReach's confirmation page opens in a new tab (`target="_blank"`); the pritoki page stays open.
+  - JS only adds the inline message in the `aria-live="polite"` region ("Almost there! Check your inbox and confirm your email.") and clears the field after the request has gone out. Without JS, everything works the same minus the message.
   - Spam: a hidden honeypot field `email_confirm` (CleverReach's own name for it). If it is filled in, JS pretends the signup worked and sends nothing.
 - Below, after a hairline rule: "Want to try it now? **Join the beta →**" (text link).
 

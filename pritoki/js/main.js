@@ -1,45 +1,26 @@
-// Signup form: posts to a CleverReach signup form, which runs the double opt-in
-// (see pritoki.md §5.4).
+// Signup form: a plain form submission to a CleverReach signup form, which runs
+// the double opt-in. It opens CleverReach's confirmation page in a new tab
+// (target="_blank"); this script only adds the inline message (see pritoki.md §5.4).
 const form = document.querySelector('.signup__form');
 const status = document.querySelector('.signup__status');
 
 if (form && status) {
-  const button = form.querySelector('button[type="submit"]');
   const honeypot = form.querySelector('.signup__hp');
+  const done = () => {
+    status.textContent = 'Almost there! Check your inbox and confirm your email.';
+  };
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const done = () => {
-      status.textContent = 'Almost there! Check your inbox and confirm your email.';
-      form.reset();
-    };
-
+  form.addEventListener('submit', (event) => {
     // Bots fill in the hidden field: act as if it worked, send nothing.
     if (honeypot && honeypot.value) {
+      event.preventDefault();
       done();
+      form.reset();
       return;
     }
 
-    button.disabled = true;
-    status.textContent = '';
-    try {
-      // CleverReach sends no CORS headers, so the response is opaque:
-      // a resolved fetch only means the request went out.
-      await fetch(form.action, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams(new FormData(form)),
-      });
-      done();
-    } catch {
-      status.textContent = 'Something went wrong. Please try again.';
-    } finally {
-      button.disabled = false;
-    }
+    done();
+    // Clear the field once the browser has taken the form data for the request.
+    setTimeout(() => form.reset(), 0);
   });
 }
