@@ -14,7 +14,7 @@ Status: draft v2 (Swiss Style), 2026-11-01
 
 **In scope**
 - One responsive page, designed mobile-first.
-- Button to join the beta (link target empty for now: `href="#"`, marked `TODO`).
+- Button to join the beta, linking to TestFlight: https://testflight.apple.com/join/NV3zgBBt
 - Mailing list signup form, not connected to any service yet (UI and client-side validation only).
 - Footer links for Impressum, privacy policy and social channels (all placeholders).
 
@@ -89,7 +89,7 @@ No horizontal scrolling at 320px width.
   3. Strong ivory rule, then a row with:
      - Tagline on three lines: "One voice. / Three tracks. / Endless in-betweens." (`lg`: columns 1–6)
      - Intro paragraph ("Every hit is a blend…") and CTAs: **Join the beta →** (primary) and **Get notified** (secondary, jumps to `#signup`) (`lg`: columns 8–12)
-  4. Hero image: `One voice.png` (iPad screenshot), full content width.
+  4. Hero image: `screen 1.png` (iPad screenshot in a device frame with transparent corners, 2615×1864), full content width.
 
 ### 5.3 Feature blocks
 There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with an h2 and a paragraph, plus a visual.
@@ -147,7 +147,8 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 - Rename to kebab-case in `img/` (no spaces): `hero-ipad`, `generate-a-groove`, `blend-and-shape`, `play-it-like-an-instrument`, `logo-bleeptools`.
 - Export AVIF with a PNG fallback through `<picture>` (WebP skipped: no encoder available locally, and AVIF is smaller).
-- Hero (656 KB source, 2615px): responsive `srcset` at 800, 1400 and 2000w. Target under 200 KB for the mobile size.
+  - AVIFs come from macOS `sips`. Chrome shows its output as transparent when a dimension is odd, so keep both width and height even (e.g. the hero is exported at 800×570, 1400×998 and 2000×1426).
+- Hero (681 KB source, 2615px): responsive `srcset` at 800, 1400 and 2000w. Target under 200 KB for the mobile size.
 - Every `<img>` has `width`/`height` set to prevent layout shift. Use `loading="lazy"` for everything except the logo and hero (hero gets `fetchpriority="high"`).
 - Alt text describes what the screenshot shows, e.g. "pritoki on iPad: three circular sequencer rings around an XY blend pad".
 
@@ -178,7 +179,6 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 | Item                         | Current value  | Owner |
 |------------------------------|----------------|-------|
-| Beta link (TestFlight)       | `#`            | you   |
 | Form endpoint / provider     | not wired      | you   |
 | Social channels and URLs     | `#`            | you   |
 | Asset: Add grit              | text only      | you   |
