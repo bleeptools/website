@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>pritoki poster</title>
+<!-- 1080×1350 Instagram poster, 70s print ad style. Render with render.sh;
+     pick the feature with ?p=<id> (see POSTERS below). -->
+<style>
+  @font-face {
+    font-family: "Inter";
+    src: url("../../../fonts/inter-latin-wght-normal.woff2") format("woff2");
+    font-weight: 100 900;
+  }
+
+  :root {
+    --c-navy: #212431;
+    --c-slate: #2A2F3F;
+    --c-slate-2: #3A3F50;
+    --c-accent: #FC5C02;
+    --c-muted: #878787;
+    --c-ivory: #F2EDE0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+
+  body {
+    background: var(--c-ivory);
+    color: var(--c-navy);
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .poster {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    padding: 56px 64px 52px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Header ---------- */
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--c-navy);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .head__no { color: var(--c-accent); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Picture panel ---------- */
+
+  .panel {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    margin-top: 28px;
+    border-radius: 28px;
+    background: var(--c-navy);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Sunburst behind the feature */
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: repeating-conic-gradient(from 0deg at 50% 50%,
+      var(--c-slate) 0deg 6deg, var(--c-navy) 6deg 12deg);
+    opacity: .9;
+  }
+  /* Soft glow in the middle so the feature sits in a pool of light */
+  .panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(33,36,49,0) 0 30%, rgba(33,36,49,.75) 75%);
+  }
+
+  .panel > * { position: relative; z-index: 1; }
+
+  .panel--bare { background: transparent; overflow: visible; }
+  .panel--bare::before, .panel--bare::after { display: none; }
+  .panel--bare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+
+  /* Faded-ink look for the pictures */
+  .shot { filter: saturate(.85) contrast(.95) sepia(.12); }
+
+  /* ---------- Stripes ---------- */
+
+  .stripes { margin-top: 26px; }
+  .stripes span { display: block; background: var(--c-accent); }
+  .stripes span:nth-child(1) { height: 14px; }
+  .stripes span:nth-child(2) { height: 8px; margin-top: 6px; }
+  .stripes span:nth-child(3) { height: 4px; margin-top: 6px; }
+
+  /* ---------- Copy ---------- */
+
+  .title {
+    margin-top: 30px;
+    font-size: 70px;
+    font-weight: 800;
+    line-height: .98;
+    letter-spacing: -.04em;
+  }
+  .title em { font-style: normal; color: var(--c-accent); }
+
+  .body {
+    margin-top: 22px;
+    columns: 2;
+    column-gap: 36px;
+    font-size: 21px;
+    line-height: 1.38;
+    font-weight: 450;
+    color: rgba(33,36,49,.88);
+  }
+
+  /* ---------- Footer ---------- */
+
+  .foot {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 3px solid var(--c-navy);
+  }
+
+  .wordmark {
+    font-size: 132px;
+    font-weight: 800;
+    line-height: .74;
+    letter-spacing: -.065em;
+    margin-left: -6px;
+    padding-bottom: 6px;
+  }
+
+  .cta { text-align: right; }
+  .cta__btn {
+    display: inline-block;
+    padding: 14px 22px;
+    background: var(--c-navy);
+    color: var(--c-ivory);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  .cta__url {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+
+  /* Round "coming soon" sticker over the panel's corner */
+  .badge {
+    position: absolute;
+    z-index: 5;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: var(--c-accent);
+    color: var(--c-navy);
+    display: grid;
+    place-content: center;
+    text-align: center;
+    transform: rotate(-12deg);
+    box-shadow: 0 0 0 6px var(--c-ivory), 0 0 0 9px var(--c-accent);
+  }
+  .badge b {
+    display: block;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: .9;
+    letter-spacing: -.04em;
+  }
+  .badge small {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Rebuilt app controls ---------- */
+
+  .ctl-label { color: var(--c-ivory); font-size: 30px; font-weight: 500; }
+  .ctl-value { color: var(--c-muted); font-size: 24px; font-weight: 600; }
+
+  /* --a rotates the indicator dot clockwise from 6 o'clock */
+  .knob {
+    position: relative;
+    display: block;
+    width: 150px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--c-ivory);
+    transform: rotate(var(--a, 45deg));
+  }
+  .knob::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+    width: 9%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--c-navy);
+    transform: translateX(-50%);
+  }
+
+  .snap { display: flex; align-items: center; gap: 48px; }
+  .snap__morph { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .snap__slots { display: flex; gap: 6px; }
+  .snap__slot {
+    display: grid;
+    place-items: center;
+    width: 130px;
+    aspect-ratio: 1;
+    background: var(--c-slate-2);
+    color: var(--c-ivory);
+    font-size: 34px;
+    font-weight: 700;
+  }
+  .snap__slot--on { background: var(--c-accent); }
+  /* Mid-morph from S1 to S2 */
+  .snap__slot--half { background: linear-gradient(90deg, var(--c-accent), var(--c-slate-2)); }
+
+  .model { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .model__dial { position: relative; width: 400px; height: 400px; display: grid; place-items: center; }
+  .model__dial svg { position: absolute; inset: 0; }
+  .model .knob { width: 270px; }
+  .model__scale {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-top: -40px;
+    color: var(--c-muted);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Aging ---------- */
+
+  .age { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+
+  /* Uneven paper tone */
+  .age--blotch {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1080' height='1350'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.004' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .42  0 0 0 0 .22  0 0 0 1.4 -.55'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: .28;
+  }
+
+  /* Fine grain */
+  .age--grain {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='540' height='540'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+    background-size: 540px 540px;
+    mix-blend-mode: overlay;
+    opacity: .32;
+  }
+
+  /* Ink wear: tiny paper-coloured specks where the print didn't take */
+  .age--specks {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1080' height='1350'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' seed='3'/><feColorMatrix values='0 0 0 0 .95  0 0 0 0 .93  0 0 0 0 .88  0 0 0 30 -21.8'/></filter><rect width='100%' height='100%' filter='url(%23s)'/></svg>");
+    opacity: .35;
+  }
+
+  /* Darkened, sun-faded edges */
+  .age--vignette {
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(110,80,40,.22) 100%),
+      linear-gradient(rgba(242,237,224,.06), rgba(242,237,224,.06));
+    mix-blend-mode: multiply;
+  }
+
+  /* Faint horizontal fold */
+  .age--fold {
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0) calc(50% - 2px),
+      rgba(90,70,40,.10) 50%,
+      rgba(255,255,255,.16) calc(50% + 2px),
+      rgba(0,0,0,0) calc(50% + 6px));
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <header class="head">
+    <span>bleeptools presents · rhythmic synthesizer for iPad &amp; Mac</span>
+    <span class="head__no" id="no"></span>
+  </header>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <h1 class="title" id="title"></h1>
+  <p class="body" id="body"></p>
+
+  <footer class="foot">
+    <div class="wordmark">pritoki</div>
+    <div class="cta">
+      <span class="cta__btn">Join the beta →</span>
+      <p class="cta__url">bleep.tools/pritoki</p>
+    </div>
+  </footer>
+
+  <div class="badge" id="badge"><b>Coming<br>soon</b><small>Beta 2026</small></div>
+
+  <div class="age age--blotch"></div>
+  <div class="age age--specks"></div>
+  <div class="age age--grain"></div>
+  <div class="age age--vignette"></div>
+  <div class="age age--fold"></div>
+</div>
+
+<script>
+  const IMG = "../../img/";
+
+  // Model dial: tick marks around the knob, from 7 to 5 o'clock
+  const ticks = Array.from({ length: 25 }, (_, i) => {
+    const a = (135 + i * 11.25) * Math.PI / 180;
+    const r1 = 168, r2 = i % 6 === 0 ? 196 : 184;
+    return `<line x1="${200 + r1 * Math.cos(a)}" y1="${200 + r1 * Math.sin(a)}" x2="${200 + r2 * Math.cos(a)}" y2="${200 + r2 * Math.sin(a)}"
+      stroke="${i <= 15 ? "#FC5C02" : "#878787"}" stroke-width="${i % 6 === 0 ? 6 : 4}" stroke-linecap="round"/>`;
+  }).join("");
+
+  const POSTERS = {
+    groove: {
+      title: "Generate a groove. <em>Then make it yours.</em>",
+      body: "Each of the three tracks has its own sequencer ring with up to 64 steps. Set steps, pulses and rotation, and a Euclidean pattern appears right away. Tap in your own hits on top, give single steps their own pitch, or roll the dice so hits drop out at random and the loop never repeats exactly. Start and stop any track with one touch.",
+      panel: `<img class="shot" src="${IMG}generate-a-groove.png" style="width:470px">`,
+    },
+    blend: {
+      title: "Blend <em>and shape.</em>",
+      body: "Move between the three tracks with a single finger. Pick from several blend modes, separately for pitch and for timbre, to change how the tracks combine. Add glide and smoothing.",
+      panel: `<img class="shot" src="${IMG}blend-and-shape.png" style="width:620px">`,
+    },
+    capture: {
+      title: "Capture a moment. <em>Morph to the next.</em>",
+      body: "Save four snapshots of the whole instrument: sound, patterns and steps. Jump between them, or let them morph into each other over time. It's a sketchbook for trying ideas, and a set of moves you can play live.",
+      panel: `<div class="snap shot">
+        <div class="snap__morph">
+          <span class="ctl-label">Morph</span>
+          <span class="knob" style="--a:135deg"></span>
+          <span class="ctl-value">1/4</span>
+        </div>
+        <div class="snap__slots">
+          <span class="snap__slot snap__slot--on">S1</span>
+          <span class="snap__slot snap__slot--half">S2</span>
+          <span class="snap__slot">S3</span>
+          <span class="snap__slot">S4</span>
+        </div>
+      </div>`,
+    },
+    model: {
+      title: "Change the model. <em>Change the character.</em>",
+      body: "One knob reshapes how the voice is built. Turn Model up and the voice goes from tones that bend and twist each other into one sound, to a layered voice where you also hear each of them on its own, in harmonic tune. You get a new family of tones without starting over, and because Model is part of every snapshot, it morphs too.",
+      panel: `<div class="model shot">
+        <span class="ctl-label">Model</span>
+        <div class="model__dial">
+          <svg viewBox="0 0 400 400">${ticks}</svg>
+          <span class="knob" style="--a:214deg"></span>
+        </div>
+        <span class="model__scale"><span>fused</span><span>layered</span></span>
+      </div>`,
+    },
+    play: {
+      title: "Play it <em>like an instrument.</em>",
+      body: "Each track has a pitch fader that can lock to a scale, so melodic bass lines fall under your fingers. You can also play each track from its own MIDI channel with a keyboard or another sequencer.",
+      panel: `<img class="shot" src="${IMG}play-it-like-an-instrument.png" style="width:275px; height:560px; object-fit:cover; object-position:top">`,
+    },
+    setup: {
+      title: "Play it on its own. <em>Plug it into your setup.</em>",
+      body: "Open pritoki as a standalone app on iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.",
+      panel: `<img class="shot" src="${IMG}hero-ipad-2000.png" style="filter: saturate(.85) contrast(.95) sepia(.12) drop-shadow(0 18px 22px rgba(33,36,49,.35))">`,
+      bare: true,
+    },
+  };
+
+  const ids = Object.keys(POSTERS);
+  const id = new URLSearchParams(location.search).get("p") || ids[0];
+  const p = POSTERS[id];
+
+  document.getElementById("no").textContent = `No. ${ids.indexOf(id) + 1} of ${ids.length}`;
+  document.getElementById("title").innerHTML = p.title;
+  document.getElementById("body").textContent = p.body;
+  const panel = document.getElementById("panel");
+  panel.innerHTML = p.panel;
+  if (p.bare) panel.classList.add("panel--bare");
+
+  // Sticker sits on the panel's top-right corner
+  const r = panel.getBoundingClientRect();
+  const badge = document.getElementById("badge");
+  badge.style.left = (r.right - 150) + "px";
+  badge.style.top = (r.top - 36) + "px";
+
+  // Short copy in one column reads better than two stubby ones
+  if (p.body.length < 240) document.getElementById("body").style.columns = "1";
+</script>
+</body>
+</html>
