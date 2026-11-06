@@ -19,7 +19,7 @@ Status: draft v2 (Swiss Style), 2026-11-01
 - Footer links for Impressum, privacy policy and social channels.
 
 **Out of scope for now**
-- Analytics, cookies, or any third-party requests.
+- Analytics, cookies, or any third-party requests on page load (the only exception is the YouTube player, see 5.6).
 - A light theme. The page is dark only, like the instrument.
 
 ## 2. Tech
@@ -87,7 +87,7 @@ No horizontal scrolling at 320px width.
   2. Wordmark **pritoki** (h1), nearly full width.
   3. Strong ivory rule, then a row with:
      - Tagline on three lines: "One voice. / Three tracks. / Endless in-betweens." (`lg`: columns 1–6)
-     - Intro paragraph ("Every hit is a blend…") and CTAs: **Join the beta →** (primary) and **Get notified** (secondary, jumps to `#signup`) (`lg`: columns 8–12)
+     - Intro paragraph ("Every hit is a blend…") and CTAs: **Watch a video tour** (secondary, opens the video overlay, see 5.6) on its own line, then **Join the beta →** (primary) and **Get notified** (secondary, jumps to `#signup`) (`lg`: columns 8–12)
   4. Hero image: `screen 1.png` (iPad screenshot in a device frame with transparent corners, 2615×1864), full content width.
 
 ### 5.3 Feature blocks
@@ -123,6 +123,22 @@ Layout:
   - JS only adds the inline message in the `aria-live="polite"` region ("Almost there! Check your inbox and confirm your email.") and clears the field after the request has gone out. Without JS, everything works the same minus the message.
   - Spam: a hidden honeypot field `email_confirm` (CleverReach's own name for it). If it is filled in, JS pretends the signup worked and sends nothing.
 - Below, after a hairline rule: "Want to try it now? **Join the beta →**" (text link).
+
+### 5.6 Video overlay
+- Video: https://www.youtube.com/watch?v=d3cqOHQAK_I (bleeptools channel).
+- Opened from the hero button and from a **Video** button under the text of feature blocks 1–5, each starting at its own time:
+
+  | Block | Start |
+  |-------|-------|
+  | Hero: Watch a video tour | 0:00 |
+  | 1 Generate a groove | 0:44 |
+  | 2 Blend and shape | 7:10 |
+  | 3 Capture a moment | 9:34 |
+  | 4 Change the model | 11:47 |
+  | 5 Play it like an instrument | 14:46 |
+
+- Buttons are plain links to YouTube, so they still work without JS. With JS they open a native `<dialog>` (focus trap, Esc to close). Close button, Esc or a backdrop click closes it, removes the player and returns focus to the button.
+- Privacy: nothing loads from YouTube until the visitor clicks **Play video** in the overlay. Before that, the overlay shows a thumbnail hosted on this site (`img/video-thumbnail`, never YouTube's own image URL, which would contact Google) with the button in its bottom-right corner, clear of the thumbnail's words, and a short note under it linking to the privacy policy. The whole thumbnail is clickable. That choice is kept in memory for the page view only, so later buttons play straight away; nothing is stored. The embed uses `youtube-nocookie.com`. See section 6 of the privacy policy.
 
 ### 5.5 Footer
 - Hairline rule on top. On the 12-column grid: "bleeptools" (1–2), social links (3–4), legal links (5–6), fine print (8–12). Stacks on mobile.

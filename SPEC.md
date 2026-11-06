@@ -22,7 +22,7 @@ Each product gets its own folder with its own `index.html`, CSS, JS and images, 
 - Plain HTML, CSS and a small amount of vanilla JS. No build step and no framework.
 - Must work as plain static files on any host. Links between pages are relative.
 - Hosting: GitHub Pages at https://bleep.tools, deployed by `.github/workflows/pages.yml` on every push to `main`. The workflow publishes everything except `*.md`, `assets/` folders and dotfiles.
-- No cookies, no analytics, no third-party requests.
+- No cookies, no analytics, no third-party requests on page load. The one exception is a YouTube player on `/pritoki/`, loaded only after the visitor clicks to play (see `pritoki.md` §5.6).
 - File layout:
   ```
   index.html            # holding page

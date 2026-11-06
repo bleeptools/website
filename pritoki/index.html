@@ -49,6 +49,7 @@
         <p class="hero__tagline">One voice.<br>Three tracks.<br>Endless in&#8209;betweens.</p>
         <div class="hero__side">
           <p class="hero__intro">Every hit is a blend of all three tracks, in sound and in rhythm. Slide between them and groove and timbre move as one. Land between a kick and a bass. Let one rhythm take the shape of another. Get lost on purpose.</p>
+          <a class="btn btn--secondary btn--video hero__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I" data-video-start="0">Watch a video tour</a>
           <div class="hero__ctas">
                   <a class="btn btn--primary" href="https://testflight.apple.com/join/NV3zgBBt">Join the beta <span aria-hidden="true">→</span></a>
             <a class="btn btn--secondary" href="#signup">Get notified</a>
@@ -77,6 +78,7 @@
         <div class="feature__text">
           <h2 id="f-groove">Generate a groove. Then make it yours.</h2>
           <p>Each of the three tracks has its own sequencer ring with up to 64 steps. Set steps, pulses and rotation, and a Euclidean pattern appears right away. Tap in your own hits on top, give single steps their own pitch, or roll the dice so hits drop out at random and the loop never repeats exactly. Start and stop any track with one touch.</p>
+          <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=44s" data-video-start="44" aria-label="Video: Generate a groove">Video</a>
         </div>
         <div class="feature__visual">
           <picture>
@@ -92,6 +94,7 @@
         <div class="feature__text">
           <h2 id="f-blend">Blend and shape.</h2>
           <p>Move between the three tracks with a single finger. Pick from several blend modes, separately for pitch and for timbre, to change how the tracks combine. Add glide and smoothing.</p>
+          <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=430s" data-video-start="430" aria-label="Video: Blend and shape">Video</a>
         </div>
         <div class="feature__visual">
           <div class="blend">
@@ -132,6 +135,7 @@
         <div class="feature__text">
           <h2 id="f-capture">Capture a moment. Morph to the next.</h2>
           <p>Save four snapshots of the whole instrument: sound, patterns and steps. Jump between them, or let them morph into each other over time. It's a sketchbook for trying ideas, and a set of moves you can play live.</p>
+          <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=574s" data-video-start="574" aria-label="Video: Capture a moment">Video</a>
         </div>
         <div class="feature__visual">
           <div class="snap" role="img" aria-label="Morph knob next to four snapshot slots, S1 to S4">
@@ -155,6 +159,7 @@
         <div class="feature__text">
           <h2 id="f-model">Change the model. Change the character.</h2>
           <p>One knob reshapes how the voice is built. Turn Model up and the voice goes from tones that bend and twist each other into one sound, to a layered voice where you also hear each of them on its own, in harmonic tune. You get a new family of tones without starting over, and because Model is part of every snapshot, it morphs too.</p>
+          <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=707s" data-video-start="707" aria-label="Video: Change the model">Video</a>
         </div>
         <div class="feature__visual">
           <div class="model" role="img" aria-label="The Model knob, turning between fused and layered voices">
@@ -170,6 +175,7 @@
         <div class="feature__text">
           <h2 id="f-play">Play it like an instrument.</h2>
           <p>Each track has a pitch fader that can lock to a scale, so melodic bass lines fall under your fingers. You can also play each track from its own MIDI channel with a keyboard or another sequencer.</p>
+          <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=886s" data-video-start="886" aria-label="Video: Play it like an instrument">Video</a>
         </div>
         <div class="feature__visual">
           <picture>
@@ -240,6 +246,24 @@
       <p class="footer__fine">© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc.</p>
     </div>
   </footer>
+
+  <!-- Video overlay. The YouTube player is only created after "Play video" (see pritoki.md §5.6). -->
+  <dialog class="video" aria-label="pritoki video tour">
+    <div class="video__bar">
+      <button class="video__close" type="button">Close <span aria-hidden="true">×</span></button>
+    </div>
+    <div class="video__notice">
+      <button class="video__play" type="button" autofocus>
+        <picture>
+          <source type="image/avif" srcset="img/video-thumbnail.avif">
+          <img src="img/video-thumbnail.png" width="1280" height="720" loading="lazy" alt="">
+        </picture>
+        <span class="btn btn--primary btn--video">Play video</span>
+      </button>
+      <p>Playing this video connects your browser to YouTube (Google) and transfers data such as your IP address, possibly to the USA. YouTube may also store information on your device. More in the <a href="../legal/privacy-en.html">privacy policy</a>.</p>
+    </div>
+    <div class="video__frame" hidden></div>
+  </dialog>
 
   <script src="js/main.js" defer></script>
 </body>

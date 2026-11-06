@@ -105,6 +105,13 @@ a { color: inherit; }
   color: var(--c-navy);
 }
 
+/* Play triangle for buttons that open the video overlay */
+.btn--video::before {
+  content: "";
+  border-block: .375em solid transparent;
+  border-inline-start: .6em solid currentColor;
+}
+
 /* ---------- Top bar ---------- */
 
 .topbar { background: var(--c-ivory); }
@@ -192,6 +199,9 @@ a { color: inherit; }
   margin-top: 32px;
 }
 
+.hero__video { margin-top: 32px; }
+.hero__video + .hero__ctas { margin-top: 12px; }
+
 .hero__image { margin-top: 64px; }
 .hero__image img { width: 100%; }
 
@@ -225,6 +235,8 @@ a { color: inherit; }
   max-width: 52ch;
   margin-top: 16px;
 }
+
+.feature__video { margin-top: 20px; }
 
 .feature__visual {
   grid-column: 1 / -1;
@@ -357,9 +369,103 @@ a { color: inherit; }
   color: var(--c-muted);
 }
 
+/* ---------- Video overlay ---------- */
+
+html:has(.video[open]) { overflow: hidden; }
+
+/* As wide as the content, but always short enough for bar + 16:9 video + note to fit */
+.video {
+  width: min(100vw - 2 * var(--gutter), var(--max), (100dvh - 170px) * 16 / 9);
+  max-width: none;
+  max-height: 100dvh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-ivory);
+}
+.video::backdrop { background: rgba(0, 0, 0, .85); }
+
+.video__bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.video__close {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.video__close:hover { color: var(--c-accent); }
+
+.video__notice { background: var(--c-navy); }
+.video__notice[hidden] { display: none; }
+
+/* The thumbnail is hosted on this site: nothing loads from YouTube before the click */
+.video__play {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.video__play picture { grid-area: 1 / 1; width: 100%; }
+.video__play img { width: 100%; }
+/* Bottom right: clear of the words in the thumbnail */
+.video__play .btn {
+  grid-area: 1 / 1;
+  place-self: end;
+  position: relative;
+  min-height: 36px;
+  margin: 8px;
+  padding: 0 12px;
+  font-size: .875rem;
+}
+.video__play:hover .btn { background: var(--c-ivory); }
+
+/* The dialog clips outlines around its edge, so the ring goes on the inner button */
+.video__play:focus-visible { outline: none; }
+.video__play:focus-visible .btn {
+  outline: 2px solid var(--c-ivory);
+  outline-offset: 3px;
+}
+
+.video__notice p {
+  max-width: 72ch;
+  padding: 12px 16px;
+  font-size: .875rem;
+}
+.video__notice a:hover { color: var(--c-accent); }
+
+.video__frame {
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video__frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* ---------- md: 768px ---------- */
 
 @media (min-width: 768px) {
+  .video__play .btn {
+    min-height: 48px;
+    margin: 24px;
+    padding: 0 20px;
+    font-size: 1rem;
+  }
+
   :root {
     --gutter: 24px;
     --col-gap: 24px;
