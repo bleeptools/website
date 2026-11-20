@@ -532,14 +532,8 @@ html:has(.video[open]) { overflow: hidden; }
   color: #F2EDE0;
 }
 
-.ctl-value {
-  color: #878787;
-  font-size: .875rem;
-  font-weight: 600;
-}
-
-/* Knob: ivory disc with an indicator dot; --a rotates the dot
-   clockwise from 6 o'clock (45deg = min, 315deg = max). */
+/* Knob: ivory disc with a dark tick running in from the edge; --a rotates
+   the tick clockwise from 6 o'clock (45deg = min, 315deg = max). */
 .knob {
   position: relative;
   display: block;
@@ -553,10 +547,9 @@ html:has(.video[open]) { overflow: hidden; }
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 12%;
-  width: 9%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  bottom: 0;
+  width: 5.5%;
+  height: 25%;
   background: #212431;
   transform: translateX(-50%);
 }
@@ -573,7 +566,13 @@ html:has(.video[open]) { overflow: hidden; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+}
+
+.snap__value {
+  color: #F2EDE0;
+  font-size: 1.75rem;
+  line-height: 1.1;
 }
 
 .snap__slots {
@@ -582,6 +581,9 @@ html:has(.video[open]) { overflow: hidden; }
   overflow: hidden;
 }
 
+.snap__defs { position: absolute; width: 0; height: 0; }
+
+/* Label and copy icon share the slot; the selected slot is orange and shows the icon */
 .snap__slot {
   display: grid;
   place-items: center;
@@ -591,18 +593,43 @@ html:has(.video[open]) { overflow: hidden; }
   color: #F2EDE0;
   font-weight: 700;
 }
+.snap__slot > * { grid-area: 1 / 1; }
+.snap__slot svg {
+  width: 40%;
+  aspect-ratio: 1;
+  fill: currentColor;
+  opacity: 0;
+}
 .snap__slot:first-child { background: #FC5C02; }
+.snap__slot:first-child > span { opacity: 0; }
+.snap__slot:first-child svg { opacity: 1; }
 
+/* The selection moves S1 → S2 → S3 → S4, 2.5s each */
 @keyframes snap-active {
   0%, 22% { background: #FC5C02; }
   25%, 97% { background: #3A3F50; }
   100% { background: #FC5C02; }
 }
+@keyframes snap-label {
+  0%, 22% { opacity: 0; }
+  25%, 97% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes snap-icon {
+  0%, 22% { opacity: 1; }
+  25%, 97% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 .snap__slot { animation: snap-active 10s linear infinite; }
-.snap__slot:nth-child(2) { animation-delay: -7.5s; }
-.snap__slot:nth-child(3) { animation-delay: -5s; }
-.snap__slot:nth-child(4) { animation-delay: -2.5s; }
+.snap__slot > span { animation: snap-label 10s linear infinite; }
+.snap__slot svg { animation: snap-icon 10s linear infinite; }
+.snap__slot:nth-child(2),
+.snap__slot:nth-child(2) > * { animation-delay: -7.5s; }
+.snap__slot:nth-child(3),
+.snap__slot:nth-child(3) > * { animation-delay: -5s; }
+.snap__slot:nth-child(4),
+.snap__slot:nth-child(4) > * { animation-delay: -2.5s; }
 
 /* Model knob */
 .model {
@@ -639,7 +666,7 @@ html:has(.video[open]) { overflow: hidden; }
 
 /* Blend pad: the cursor (orange dot + hairlines) drifts around the pad on two
    axes with different periods; the small center dot stays put. Offsets are in
-   the screenshot's pixels and stay within 105px of the center (pad radius 182,
+   the screenshot's pixels and stay within 105px of the center (pad radius 186,
    dot radius 24). */
 .blend {
   position: relative;
@@ -675,6 +702,7 @@ html:has(.video[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .snap__slot,
+  .snap__slot > *,
   .knob--lg,
   .blend__x,
   .blend__y { animation: none; }

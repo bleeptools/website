@@ -3,7 +3,7 @@
 Part of the bleeptools website (see `SPEC.md`). Lives at `/pritoki/`.
 
 
-Landing page for **pritoki**, a rhythmic synthesizer by bleeptools for iPad and Mac (standalone app and AUv3 plugin).
+Landing page for **pritoki**, a rhythmic synthesizer by bleeptools for iPhone, iPad and Mac (standalone app and AUv3 plugin).
 Goals: explain the instrument, send people to the beta, and collect emails for the launch.
 
 Status: draft v2 (Swiss Style), 2026-11-01
@@ -83,7 +83,7 @@ No horizontal scrolling at 320px width.
 ### 5.2 Hero
 - Source copy: `# pritoki` and the lines below it in `texts.md`.
 - Order:
-  1. Meta row: "Rhythmic synthesizer / iPad & Mac / Standalone + AUv3 / Beta 2026". Each item has a hairline rule on top. 2 columns on mobile, 4 from `md`, 3 grid columns each on `lg`.
+  1. Meta row: "Rhythmic synthesizer / iPhone, iPad & Mac / Standalone + AUv3 / Beta 2026". Each item has a hairline rule on top. 2 columns on mobile, 4 from `md`, 3 grid columns each on `lg`.
   2. Wordmark **pritoki** (h1), nearly full width.
   3. Strong ivory rule, then a row with:
      - Tagline on three lines: "One voice. / Three tracks. / Endless in-betweens." (`lg`: columns 1–6)
@@ -96,7 +96,7 @@ There are 7 blocks, in the order of `texts.md`. Each one is a `<section>` with a
 | # | Heading                                         | Visual                                   | Notes |
 |---|-------------------------------------------------|------------------------------------------|-------|
 | 1 | Generate a groove. Then make it yours.          | `Generate a groove.png` (563×563)        | Sequencer ring. Show at no more than 280px wide. |
-| 2 | Blend and shape.                                | `Blend and shape.png` (638×432) + **animated SVG overlay** (see 6.3) | XY pad with blend modes. |
+| 2 | Blend and shape.                                | `img/blend-and-shape.png` (660×450, cut out of `screen 1.png` with a transparent background) + **animated SVG overlay** (see 6.3) | XY pad with blend modes, Tone and Pitch knobs. |
 | 3 | Capture a moment. Morph to the next.            | **SVG/CSS rebuild** (see 6.1)            | Morph knob plus S1–S4. |
 | 4 | Change the model. Change the character.         | **SVG/CSS rebuild** (see 6.2)            | Large Model knob. |
 | 5 | Play it like an instrument.                     | `Play it like an instrument.png` (344×798) | Tall image. On mobile, show it 180×260px, cropped from the top with `object-fit: cover; object-position: top`. |
@@ -144,17 +144,17 @@ Layout:
 - Hairline rule on top. On the 12-column grid: "bleeptools" (1–2), social links (3–4), legal links (5–6), fine print (8–12). Stacks on mobile.
 - Social links as text links, ivory, turning orange on hover: Instagram (https://www.instagram.com/bleeptools/). YouTube and Discord are commented out in the markup until those channels exist.
 - Links: Impressum · Privacy policy (`../legal/imprint-en.html`, `../legal/privacy-en.html`).
-- Fine print (muted): "© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc."
+- Fine print (muted): "© 2026 bleeptools. iPhone, iPad, Mac, GarageBand and Logic are trademarks of Apple Inc."
 
 ## 6. Rebuilt visuals (SVG/CSS)
 
-Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small dark dot as the indicator, labels in Inter, on the navy page background. Snapshot slots have square corners.
+Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a short dark tick running in from the edge as the indicator, labels in Inter, on the navy page background. Snapshot slots have square corners.
 
 ### 6.1 Snapshots (block 3)
-- Contents: a "Morph" label, a knob with its value ("1/4") underneath, and four buttons S1–S4. The active one is orange; the others are `#3A3F50` with ivory text.
-- base: lay it out **horizontally** (knob on the left, S1–S4 in a row). The source image is very tall and narrow, which wastes space on a phone.
+- Contents: a "Morph" label with its value ("1/2") in larger type underneath (no knob, as in the app), and four snapshot buttons S1–S4. The selected snapshot is orange and shows a copy icon (two pages) instead of its label, as in the app; the others are `#3A3F50` with ivory text.
+- base: lay it out **horizontally** (Morph on the left, the four slots in a row). The source image is very tall and narrow, which wastes space on a phone.
 - `lg`: vertical column, as in the app.
-- Optional animation: the active snapshot moves S1 → S2 → S3 → S4 every few seconds, crossfading the orange. Turned off under `prefers-reduced-motion`.
+- Animation: the selection moves S1 → S2 → S3 → S4, 2.5s each, crossfading the orange and swapping label and icon. Turned off under `prefers-reduced-motion`.
 
 ### 6.2 Model knob (block 4)
 - One large knob (110–140px) with the label "Model" and a "FUSED ↔ LAYERED" scale underneath.
@@ -162,9 +162,9 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 - Either inline SVG or CSS with a `rotate` transform on the indicator.
 
 ### 6.3 Blend pad cursor (block 2)
-- The screenshot stays; an inline SVG with the same `viewBox` (638×432, the image's pixels) sits on top of it and scales with it.
-- A disc in `--c-slate` (`#2A2F3F`, r 181 at 283.5/187.5) covers the dot and hairlines baked into the screenshot.
-- On top: the hairlines (2px, `#525560`) and the orange dot (r 24), clipped to the pad, plus a small static ivory dot (r 3) at the pad's center, under the orange dot.
+- The screenshot stays; an inline SVG with the same `viewBox` (660×450, the image's pixels) sits on top of it and scales with it.
+- A disc in `--c-slate` (`#2A2F3F`, r 185 at 291.5/191.75; the pad's radius is 186) covers the dot and hairlines baked into the screenshot.
+- On top: the hairlines (2px, `#525560`) and the orange dot (r 24), clipped to the pad, plus a small static ivory dot (r 2) at the pad's center, under the orange dot.
 - Animation: the cursor drifts on X (7s) and Y (5s) separately, `ease-in-out alternate`, within ±105px of the center, so the dot never touches the edge. Turned off under `prefers-reduced-motion` (the cursor then rests on the center).
 
 ## 7. Images
@@ -188,7 +188,7 @@ Both rebuilds must match the app's style: ivory knobs (`#F2EDE0`) with a small d
 
 ## 9. Meta / SEO
 
-- `<title>`: "pritoki: rhythmic synthesizer for iPad & Mac (AUv3) · bleeptools"
+- `<title>`: "pritoki: rhythmic synthesizer for iPhone, iPad & Mac (AUv3) · bleeptools"
 - Meta description based on the tagline and the intro.
 - Open Graph and Twitter card tags. The OG image is a 1200×630 crop of the hero, generated once and stored in `img/og.png`.
 - `lang="en"`, `theme-color` set to `#212431`, favicon (a pritoki app icon if one exists; otherwise the orange "B" circle from the logo).

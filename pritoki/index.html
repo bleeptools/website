@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pritoki: rhythmic synthesizer for iPad &amp; Mac (AUv3) · bleeptools</title>
-  <meta name="description" content="pritoki is a rhythmic synthesizer for iPad and Mac, standalone and AUv3. One voice, three tracks, endless in-betweens: every hit is a blend of all three tracks, in sound and in rhythm.">
+  <title>pritoki: rhythmic synthesizer for iPhone, iPad &amp; Mac (AUv3) · bleeptools</title>
+  <meta name="description" content="pritoki is a rhythmic synthesizer for iPhone, iPad and Mac, standalone and AUv3. One voice, three tracks, endless in-betweens: every hit is a blend of all three tracks, in sound and in rhythm.">
   <meta name="theme-color" content="#212431">
   <meta name="color-scheme" content="dark">
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bleep.tools/pritoki/">
   <meta property="og:title" content="pritoki: One voice. Three tracks. Endless in-betweens.">
-  <meta property="og:description" content="A rhythmic synthesizer for iPad and Mac, standalone and AUv3. Every hit is a blend of all three tracks, in sound and in rhythm.">
+  <meta property="og:description" content="A rhythmic synthesizer for iPhone, iPad and Mac, standalone and AUv3. Every hit is a blend of all three tracks, in sound and in rhythm.">
   <meta property="og:image" content="https://bleep.tools/pritoki/img/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -38,7 +38,7 @@
     <section class="hero wrap" aria-labelledby="hero-title">
       <ul class="meta" aria-label="At a glance">
         <li>Rhythmic synthesizer</li>
-        <li>iPad &amp; Mac</li>
+        <li>iPhone, iPad &amp; Mac</li>
         <li>Standalone + AUv3</li>
         <li>Beta 2026</li>
       </ul>
@@ -100,24 +100,24 @@
           <div class="blend">
             <picture>
               <source type="image/avif" srcset="img/blend-and-shape.avif">
-              <img class="feature__img" src="img/blend-and-shape.png" width="638" height="432" loading="lazy"
+              <img class="feature__img" src="img/blend-and-shape.png" width="660" height="450" loading="lazy"
                    alt="The XY blend pad with separate blend mode selectors and knobs for pitch and tone">
             </picture>
             <!-- Moving XY cursor over the screenshot, in the image's pixel coordinates -->
-            <svg class="blend__pad" viewBox="0 0 638 432" aria-hidden="true">
+            <svg class="blend__pad" viewBox="0 0 660 450" aria-hidden="true">
               <defs>
-                <clipPath id="blend-clip"><circle cx="283.5" cy="187.5" r="181"/></clipPath>
+                <clipPath id="blend-clip"><circle cx="291.5" cy="191.75" r="185"/></clipPath>
               </defs>
               <!-- Covers the dot and hairlines baked into the screenshot -->
-              <circle cx="283.5" cy="187.5" r="181" fill="#2A2F3F"/>
+              <circle cx="291.5" cy="191.75" r="185" fill="#2A2F3F"/>
               <g clip-path="url(#blend-clip)">
-                <g transform="translate(283.5 187.5)">
+                <g transform="translate(291.5 191.75)">
                   <g class="blend__x">
                     <g class="blend__y">
                       <path d="M0 -400V400M-400 0H400" stroke="#525560" stroke-width="2"/>
                     </g>
                   </g>
-                  <circle r="3" fill="#F2EDE0"/>
+                  <circle r="2" fill="#F2EDE0"/>
                   <g class="blend__x">
                     <g class="blend__y">
                       <circle r="24" fill="#FC5C02"/>
@@ -138,17 +138,22 @@
           <a class="btn btn--secondary btn--video feature__video" href="https://www.youtube.com/watch?v=d3cqOHQAK_I&amp;t=574s" data-video-start="574" aria-label="Video: Capture a moment">Video</a>
         </div>
         <div class="feature__visual">
-          <div class="snap" role="img" aria-label="Morph knob next to four snapshot slots, S1 to S4">
+          <div class="snap" role="img" aria-label="Morph value above four snapshot slots, S1 to S4; the selected one is orange and shows a copy icon">
+            <svg class="snap__defs" aria-hidden="true">
+              <symbol id="snap-copy" viewBox="0 0 24 24">
+                <path d="M9 2h8l4 4v12h-2.5V7l-3-3H9z"/>
+                <path d="M3 6h8.5l4 4v12H3z"/>
+              </symbol>
+            </svg>
             <div class="snap__morph">
               <span class="ctl-label">Morph</span>
-              <span class="knob" style="--a: 135deg"></span>
-              <span class="ctl-value">1/4</span>
+              <span class="snap__value">1/2</span>
             </div>
             <div class="snap__slots">
-              <span class="snap__slot">S1</span>
-              <span class="snap__slot">S2</span>
-              <span class="snap__slot">S3</span>
-              <span class="snap__slot">S4</span>
+              <span class="snap__slot"><span>S1</span><svg><use href="#snap-copy"/></svg></span>
+              <span class="snap__slot"><span>S2</span><svg><use href="#snap-copy"/></svg></span>
+              <span class="snap__slot"><span>S3</span><svg><use href="#snap-copy"/></svg></span>
+              <span class="snap__slot"><span>S4</span><svg><use href="#snap-copy"/></svg></span>
             </div>
           </div>
         </div>
@@ -199,7 +204,7 @@
         <span class="feature__index" aria-hidden="true">07</span>
         <div class="feature__text">
           <h2 id="f-setup">Play it on its own. Plug it into your setup.</h2>
-          <p>Open pritoki as a standalone app on iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.</p>
+          <p>Open pritoki as a standalone app on iPhone, iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.</p>
         </div>
         <!-- TODO: add a feature__visual here once the "Play it on its own" asset exists -->
       </section>
@@ -243,7 +248,7 @@
         <li><a href="../legal/imprint-en.html">Impressum</a></li>
         <li><a href="../legal/privacy-en.html">Privacy policy</a></li>
       </ul>
-      <p class="footer__fine">© 2026 bleeptools. iPad, Mac, GarageBand and Logic are trademarks of Apple Inc.</p>
+      <p class="footer__fine">© 2026 bleeptools. iPhone, iPad, Mac, GarageBand and Logic are trademarks of Apple Inc.</p>
     </div>
   </footer>
 

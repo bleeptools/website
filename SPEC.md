@@ -1,6 +1,6 @@
 # bleeptools website: spec
 
-The website of **bleeptools**, a maker of music software for iPad and Mac.
+The website of **bleeptools**, a maker of music software for iPhone, iPad and Mac.
 For now it has a holding page at the root and one product page, pritoki.
 
 Status: draft v1, 2026-11-01

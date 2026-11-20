@@ -24,4 +24,4 @@ Each track has a pitch fader that can lock to a scale, so melodic bass lines fal
 Use Warp to bend the tone harder, turn on Hard for a gated, broken edge, and add drive, a bitcrusher or a wavefolder. Send any track into a tempo-synced tape-style echo, and its tails ring on after the hit has ended.
 
 ### Play it on its own. Plug it into your setup.
-Open pritoki as a standalone app on iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.
+Open pritoki as a standalone app on iPhone, iPad and Mac and just play, with its own clock and tempo. Or load it as an AUv3 instrument in AUM, GarageBand, Logic and other hosts, where it follows the host's tempo and saves its sound, patterns and snapshots with your project.
